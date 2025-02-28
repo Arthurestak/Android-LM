@@ -7,17 +7,17 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-<<<<<<< HEAD
+
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-=======
+
     <string name="menu_cadastro">Cadastro</string>
     <string name="menu_perfil">Perfil</string>
     <string name="menu_livros">Livros</string>
     <string name="menu_assinatura">Assinatura</string>
     <string name="menu_meuslivros">Meus Livros</string>
->>>>>>> f288649ec279780bdd924103921ba8e833333c94
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
