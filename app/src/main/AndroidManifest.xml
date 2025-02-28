@@ -13,9 +13,6 @@
         android:theme="@style/Theme.ProjetoLM"
         tools:targetApi="31">
         <activity
-            android:name=".RecuperaSenha"
-            android:exported="false" />
-        <activity
             android:name=".Cadastro"
             android:exported="true"
             android:theme="@style/Theme.ProjetoLM.NoActionBar" />

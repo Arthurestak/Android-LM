@@ -15,6 +15,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.projetolm.ui.livros.LivrosFragment;
+import com.example.projetolm.ui.perfil.PerfilFragment;
+
 public class Login extends AppCompatActivity {
     EditText emailInput;
     EditText senhaInput;
@@ -54,7 +57,9 @@ btCadastreSeLogin.setOnClickListener(new View.OnClickListener() {
 btEntrar.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-
+    if(emailInput.getText().toString().equals("com") && senhaInput.getText().toString().equals("123456")){
+        
+    }
 
     }
 });
