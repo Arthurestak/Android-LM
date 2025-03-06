@@ -57,7 +57,7 @@ btCadastreSeLogin.setOnClickListener(new View.OnClickListener() {
 btEntrar.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-    if(emailInput.getText().toString().equals("com") && senhaInput.getText().toString().equals("123456")){
+    if(emailInput.getText().toString().equals("") && senhaInput.getText().toString().equals("")){
         Intent intent = new Intent(Login.this,MainActivity.class);
         startActivity(intent);
         finish();

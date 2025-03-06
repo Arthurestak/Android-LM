@@ -1,6 +1,7 @@
 package com.example.projetolm;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 
 import com.google.android.material.navigation.NavigationView;
@@ -13,6 +14,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetolm.databinding.ActivityMainBinding;
+
+import java.sql.Connection;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        Connection conexao = ConexaoMySQL.conectar();
+        if (conexao != null) {
+            Log.d("Conexão", "Conexão estabelecida com sucesso!");
+// Faça suas operações de banco de dados aqui
+            ConexaoMySQL.fecharConexao(conexao);
+        }else{
+            Log.d("Conexão", "Erro ao conectar ao banco de dados!");
+        }
     }
 
     @Override
@@ -55,4 +67,5 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }
