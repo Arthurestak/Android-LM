@@ -48,8 +48,8 @@ btCadastreSeLogin = findViewById(R.id.btCadastreSeLogin);
 btCadastreSeLogin.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        Intent cadastro = new Intent(Login.this,Cadastro.class);
-        startActivity(cadastro);
+        Intent intent = new Intent(Login.this,Cadastro.class);
+        startActivity(intent);
         finish();
     }
 });

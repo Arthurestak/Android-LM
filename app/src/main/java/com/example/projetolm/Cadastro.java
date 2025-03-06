@@ -1,5 +1,6 @@
 package com.example.projetolm;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -14,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class Cadastro extends AppCompatActivity {
 
     EditText nomeInputCadastro, emailInputCadastro, senhaInputCadastro, confirmaSenhaInputCadastro;
-    ImageView btCadastrar;
+    ImageView btCadastrar, btVoltar;
 
 
     @Override
@@ -33,11 +34,20 @@ public class Cadastro extends AppCompatActivity {
         senhaInputCadastro = findViewById(R.id.senhaInputCadastro);
         confirmaSenhaInputCadastro = findViewById(R.id.confirmaSenhaInputCadastro);
         btCadastrar = findViewById(R.id.btCadastrar);
+        btVoltar = findViewById(R.id.btVoltar);
 
         btCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+        btVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Cadastro.this, Login.class);
+                startActivity(intent);
+                finish();
             }
         });
 
