@@ -1,6 +1,7 @@
 package com.example.projetolm;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -33,6 +34,12 @@ public class Cadastro extends AppCompatActivity {
         confirmaSenhaInputCadastro = findViewById(R.id.confirmaSenhaInputCadastro);
         btCadastrar = findViewById(R.id.btCadastrar);
 
+        btCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 

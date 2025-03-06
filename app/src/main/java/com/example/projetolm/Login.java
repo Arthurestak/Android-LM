@@ -58,7 +58,9 @@ btEntrar.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
     if(emailInput.getText().toString().equals("com") && senhaInput.getText().toString().equals("123456")){
-        
+        Intent intent = new Intent(Login.this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     }
