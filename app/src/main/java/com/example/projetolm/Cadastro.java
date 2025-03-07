@@ -1,10 +1,13 @@
 package com.example.projetolm;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,12 +15,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class Cadastro extends AppCompatActivity {
 
-    EditText nomeInputCadastro, emailInputCadastro, senhaInputCadastro, confirmaSenhaInputCadastro;
+    EditText nomeInputCadastro, emailInputCadastro, cpfInputCadastro, confirmaSenhaInputCadastro, senhaInputCadastro;
     ImageView btCadastrar, btVoltar;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +39,66 @@ public class Cadastro extends AppCompatActivity {
 
         nomeInputCadastro = findViewById(R.id.nomeInputCadastro);
         emailInputCadastro = findViewById(R.id.emailInputCadastro);
+        cpfInputCadastro = findViewById(R.id.cpfInputCadastro);
         senhaInputCadastro = findViewById(R.id.senhaInputCadastro);
         confirmaSenhaInputCadastro = findViewById(R.id.confirmaSenhaInputCadastro);
         btCadastrar = findViewById(R.id.btCadastrar);
         btVoltar = findViewById(R.id.btVoltar);
 
+
         btCadastrar.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NewApi")
             @Override
             public void onClick(View view) {
+                Connection connection = ConexaoMySQL.conectar();
+                try{
+                    String insertCadastro = "Insert into pessoa (nome,email,cpf,senha) values (?,?,?,?)";
+                    PreparedStatement stmt = connection.prepareStatement(insertCadastro);
+                    stmt.setString(1, nomeInputCadastro.getText().toString());
+                    stmt.setString(2, emailInputCadastro.getText().toString());
+                    stmt.setString(3, cpfInputCadastro.getText().toString());
+                    stmt.setString(4, senhaInputCadastro.getText().toString());
+
+                    if(nomeInputCadastro.getText().isEmpty() || emailInputCadastro.getText().isEmpty() || cpfInputCadastro.getText().isEmpty() || senhaInputCadastro.getText().isEmpty()){
+                        Toast.makeText(Cadastro.this, "Um ou mais campos estão vazios!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(!senhaInputCadastro.getText().toString().equals(confirmaSenhaInputCadastro.getText().toString())){
+                        Toast.makeText(Cadastro.this, "As senhas não coincidem!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if(senhaInputCadastro.getText().toString().length() >= 21){
+                        Toast.makeText(Cadastro.this, "A senha deve conter no máximo 20 caracteres!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if(cpfInputCadastro.getText().toString().length() >= 16){
+                        Toast.makeText(Cadastro.this, "O CPF deve conter no máximo 15 caracteres!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    stmt.execute();
+                    Toast.makeText(Cadastro.this, "Usuário cadastrado! Volte à tela Login!", Toast.LENGTH_SHORT).show();
+                    nomeInputCadastro.setText("");
+                    emailInputCadastro.setText("");
+                    cpfInputCadastro.setText("");
+                    senhaInputCadastro.setText("");
+                    confirmaSenhaInputCadastro.setText("");
+
+
+
+
+
+
+
+
+
+                }catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+
 
             }
         });

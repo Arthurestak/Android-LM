@@ -1,5 +1,5 @@
 package com.example.projetolm;
-
+import java.sql.Connection;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +15,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.example.projetolm.ui.livros.LivrosFragment;
 import com.example.projetolm.ui.perfil.PerfilFragment;
+
+import java.sql.Statement;
+
+import javax.xml.transform.Result;
 
 public class Login extends AppCompatActivity {
     EditText emailInput;
@@ -57,11 +67,37 @@ btCadastreSeLogin.setOnClickListener(new View.OnClickListener() {
 btEntrar.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-    if(emailInput.getText().toString().equals("") && senhaInput.getText().toString().equals("")){
-        Intent intent = new Intent(Login.this,MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
+        Connection connection = ConexaoMySQL.conectar();
+        try {
+            String selectLogin = "select * from pessoa where email = ? and senha = ?";
+            PreparedStatement stmt = connection.prepareStatement(selectLogin);
+            stmt.setString(1, emailInput.getText().toString());
+            stmt.setString(2, senhaInput.getText().toString());
+            ResultSet rs = stmt.executeQuery();
+
+            String selectSenha = "select * from pessoa where senha = ?";
+            PreparedStatement stmt2 = connection.prepareStatement(selectSenha);
+            stmt2.setString(1, senhaInput.getText().toString());
+            ResultSet rs2 = stmt2.executeQuery();
+
+
+
+            if (rs.next()) {
+                Intent intent = new Intent(Login.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }else{
+                Toast.makeText(Login.this, "Email ou Senha incorretos!", Toast.LENGTH_SHORT).show();
+            }
+
+
+            rs.close();
+            stmt.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 });
