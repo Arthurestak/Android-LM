@@ -2,6 +2,7 @@ package com.example.projetolm;
 import java.sql.Connection;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -54,6 +55,13 @@ btEntrar = findViewById(R.id.btEntrar);
 btRecuperarSenhaLogin = findViewById(R.id.btRecuperarSenhaLogin);
 btCadastreSeLogin = findViewById(R.id.btCadastreSeLogin);
 
+btRecuperarSenhaLogin.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+        startActivity(intent);
+    }
+});
 
 btCadastreSeLogin.setOnClickListener(new View.OnClickListener() {
     @Override
