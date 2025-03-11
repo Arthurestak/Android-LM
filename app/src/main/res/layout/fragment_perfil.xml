@@ -126,7 +126,7 @@
         android:layout_marginTop="6dp"
         android:layout_marginEnd="177dp"
         android:text="Nome:"
-        android:textColor="#000000"
+        android:textColor="#A9000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btAssine" />
@@ -139,7 +139,7 @@
         android:layout_marginTop="76dp"
         android:layout_marginEnd="177dp"
         android:text="Email:"
-        android:textColor="#000000"
+        android:textColor="#A9000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btAssine" />
@@ -152,7 +152,7 @@
         android:layout_marginTop="152dp"
         android:layout_marginEnd="177dp"
         android:text="CPF:"
-        android:textColor="#000000"
+        android:textColor="#A9000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
