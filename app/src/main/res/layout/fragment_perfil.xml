@@ -39,8 +39,8 @@
         android:layout_marginTop="25dp"
         android:ems="10"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
         android:inputType="text"
-        android:text="Nome"
         android:textColorLink="#A20F0F"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -56,8 +56,8 @@
         android:layout_marginTop="25dp"
         android:ems="10"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
         android:inputType="text"
-        android:text="Email"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,8 +72,8 @@
         android:layout_marginTop="25dp"
         android:ems="10"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
         android:inputType="text"
-        android:text="CPF"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +85,7 @@
         android:layout_width="96dp"
         android:layout_height="24dp"
         android:layout_marginTop="32dp"
-        android:text="2025 - L+M"
+        android:text="© 2025 - LeM"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textStyle="bold|italic"
@@ -117,5 +117,45 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/campoCpf" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="177dp"
+        android:text="Nome:"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAssine" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="177dp"
+        android:text="Email:"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAssine" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="177dp"
+        android:text="CPF:"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAssine" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
