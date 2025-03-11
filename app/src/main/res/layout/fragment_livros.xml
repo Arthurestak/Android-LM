@@ -4,19 +4,232 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.livros.LivrosFragment">
+    tools:context=".ui.livros.LivrosFragment"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="-24dp">
 
-    <TextView
-        android:id="@+id/text_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+    <EditText
+        android:id="@+id/emailInput4"
+        style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+        android:layout_width="237dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="5px"
+        android:layout_marginTop="40dp"
+        android:background="#0B0A0A"
+        android:backgroundTint="#D9D9D9"
+        android:ems="10"
+        android:hint="Pesquisar"
+        android:hyphenationFrequency="normal"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorLink="#000000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView23"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/senhaInput4"
+        style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+        android:layout_width="150dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="100dp"
+        android:background="#FB000000"
+        android:backgroundTint="#d9d9d9"
+        android:clickable="false"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:text="Livros"
         android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/black"
+        android:textColorHint="#000000"
+        android:textColorLink="#0C081E"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailInput4" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="343dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/linha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailInput4" />
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/icon_de_filtro"
+        app:layout_constraintEnd_toStartOf="@+id/senhaInput4"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailInput4" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="60dp"
+        android:src="@drawable/icon_de_refresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toEndOf="@+id/senhaInput4"
+        app:layout_constraintTop_toBottomOf="@+id/emailInput4" />
+
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="371dp"
+        android:layout_height="455dp"
+        android:layout_marginTop="252dp"
+        android:src="@drawable/captura_de_tela__1_"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivFoto9"
+        android:layout_width="45dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="76dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/senhaInput4"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/ivFoto10"
+        android:layout_width="45dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.273"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivFoto9"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/ivFoto12"
+        android:layout_width="45dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.273"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivFoto10"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/ivFoto11"
+        android:layout_width="45dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.273"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivFoto12"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="172dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="72dp"
+        android:text="Livro: Desconhecido  Autor: Mistério Gênero: Indecifrável"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toEndOf="@+id/ivFoto9"
+        app:layout_constraintTop_toBottomOf="@+id/senhaInput4" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="172dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="72dp"
+        android:text="Livro: Desconhecido  Autor(a): Mistério Gênero: Indecifrável"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toEndOf="@+id/ivFoto11"
+        app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="172dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="60dp"
+        android:text="Livro: Desconhecido  Autor: Mistério Gênero: Indecifrável"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.588"
+        app:layout_constraintStart_toEndOf="@+id/ivFoto12"
+        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="130dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="52dp"
+        android:src="@drawable/captura_de_tela_2025_03_11_162658"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="172dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="72dp"
+        android:text="Livro: Desconhecido  Autor(a): Mistério Gênero: Indecifrável"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toEndOf="@+id/ivFoto10"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="23dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="84dp"
+        android:src="@drawable/icon_de_pesquisa"
+        app:layout_constraintBottom_toBottomOf="@+id/emailInput2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="@+id/emailInput4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

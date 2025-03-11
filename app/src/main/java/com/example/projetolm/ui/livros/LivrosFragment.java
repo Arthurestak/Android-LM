@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.projetolm.R;
 import com.example.projetolm.databinding.FragmentLivrosBinding;
 import com.example.projetolm.databinding.FragmentLivrosBinding;
 
@@ -24,10 +25,13 @@ public class LivrosFragment extends Fragment {
 
         binding = FragmentLivrosBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        View view = inflater.inflate(R.layout.fragment_livros,container,false);
 
-        final TextView textView = binding.textGallery;
-        livrosViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+
+
+
+
+        return view;
     }
 
     @Override
