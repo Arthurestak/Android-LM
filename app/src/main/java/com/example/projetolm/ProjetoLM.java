@@ -5,21 +5,22 @@ import android.app.Application;
 public class ProjetoLM extends Application {
 
     private String nomePessoa;
-    private int idPessoa;
+    private String idPessoaJava;
 
     public String getNomePessoa(){
         return nomePessoa;
     }
 
-    public int getIdPessoa(){
-        return idPessoa;
+    public String getIdPessoaJava(){
+        return idPessoaJava;
     }
 
-    public void setIdPessoa(int idPessoa){
-        this.idPessoa = idPessoa;
+    public void setIdPessoaJava(String idPessoaJava){
+        this.idPessoaJava = idPessoaJava;
     }
 
     public void setNomePessoa(String nomePessoa){
         this.nomePessoa = nomePessoa;
     }
+
 }

@@ -87,18 +87,9 @@ btEntrar.setOnClickListener(new View.OnClickListener() {
             stmt.setString(2, senhaInput.getText().toString());
             ResultSet rs = stmt.executeQuery();
 
-            String selectSenha = "select * from pessoa where senha = ?";
-            PreparedStatement stmt2 = connection.prepareStatement(selectSenha);
-            stmt2.setString(1, senhaInput.getText().toString());
-            ResultSet rs2 = stmt2.executeQuery();
-
-
-
             if (rs.next()) {
-                    PerfilFragment app = new PerfilFragment();
+                    ProjetoLM app = (ProjetoLM) getApplicationContext();
                     app.setIdPessoaJava(rs.getString("id_pessoa"));
-                    Toast.makeText(getApplicationContext(),rs.getString("id_pessoa"), Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(Login.this,MainActivity.class);
                 startActivity(intent);
                 finish();
