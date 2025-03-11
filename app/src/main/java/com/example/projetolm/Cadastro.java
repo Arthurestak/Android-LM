@@ -86,20 +86,9 @@ public class Cadastro extends AppCompatActivity {
                     senhaInputCadastro.setText("");
                     confirmaSenhaInputCadastro.setText("");
 
-
-
-
-
-
-
-
-
                 }catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-
-
-
             }
         });
         btVoltar.setOnClickListener(new View.OnClickListener() {

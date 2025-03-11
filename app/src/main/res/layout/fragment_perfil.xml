@@ -4,19 +4,115 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.perfil.PerfilFragment">
+    tools:context=".ui.perfil.PerfilFragment"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="-3dp">
 
     <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="24dp"
+        android:text="Perfil"
         android:textAlignment="center"
+        android:textColor="#100F0F"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="103dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/captura_de_tela__11_"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/campoNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins_medium"
+        android:inputType="text"
+        android:text="Nome"
+        android:textColorLink="#A20F0F"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAssine" />
+
+    <EditText
+        android:id="@+id/campoEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins_medium"
+        android:inputType="text"
+        android:text="Email"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoNome" />
+
+    <EditText
+        android:id="@+id/campoCpf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins_medium"
+        android:inputType="text"
+        android:text="CPF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoEmail" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="96dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="32dp"
+        android:text="2025 - L+M"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btSalvar" />
+
+    <ImageView
+        android:id="@+id/btAssine"
+        android:layout_width="191dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="110dp"
+        android:src="@drawable/captura_de_tela_2025_03_10_143258"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <ImageView
+        android:id="@+id/btSalvar"
+        android:layout_width="196dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="108dp"
+        android:src="@drawable/captura_de_tela_2025_03_10_143916"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoCpf" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

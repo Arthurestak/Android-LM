@@ -1,4 +1,6 @@
 package com.example.projetolm;
+import static java.security.AccessController.getContext;
+
 import java.sql.Connection;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -26,10 +28,12 @@ import com.example.projetolm.ui.livros.LivrosFragment;
 import com.example.projetolm.ui.perfil.PerfilFragment;
 
 import java.sql.Statement;
+import java.sql.Struct;
 
 import javax.xml.transform.Result;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity{
+
     EditText emailInput;
     EditText senhaInput;
     ImageView btEntrar;
@@ -91,6 +95,10 @@ btEntrar.setOnClickListener(new View.OnClickListener() {
 
 
             if (rs.next()) {
+                    PerfilFragment app = new PerfilFragment();
+                    app.setIdPessoaJava(rs.getString("id_pessoa"));
+                    Toast.makeText(getApplicationContext(),rs.getString("id_pessoa"), Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(Login.this,MainActivity.class);
                 startActivity(intent);
                 finish();
