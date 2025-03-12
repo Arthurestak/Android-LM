@@ -9,7 +9,7 @@
     tools:layout_editor_absoluteY="-24dp">
 
     <EditText
-        android:id="@+id/emailInput4"
+        android:id="@+id/pesquisarInput"
         style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
         android:layout_width="237dp"
         android:layout_height="36dp"
@@ -18,6 +18,7 @@
         android:background="#0B0A0A"
         android:backgroundTint="#D9D9D9"
         android:ems="10"
+        android:fontFamily="@font/poppins_light"
         android:hint="Pesquisar"
         android:hyphenationFrequency="normal"
         android:inputType="text"
@@ -34,17 +35,17 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/senhaInput4"
+        android:id="@+id/textLivros"
         style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
         android:layout_width="150dp"
         android:layout_height="26dp"
         android:layout_marginStart="102dp"
-        android:layout_marginTop="52dp"
         android:layout_marginEnd="100dp"
         android:background="#FB000000"
         android:backgroundTint="#d9d9d9"
         android:clickable="false"
         android:ems="10"
+        android:fontFamily="@font/poppins_light"
         android:inputType="text"
         android:paddingLeft="10dp"
         android:text="Livros"
@@ -55,9 +56,9 @@
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailInput4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
     <ImageView
         android:id="@+id/imageView16"
@@ -67,130 +68,123 @@
         android:src="@drawable/linha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailInput4" />
+        app:layout_constraintTop_toBottomOf="@+id/pesquisarInput" />
 
     <ImageView
-        android:id="@+id/imageView21"
-        android:layout_width="35dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="48dp"
-        android:src="@drawable/icon_de_filtro"
-        app:layout_constraintEnd_toStartOf="@+id/senhaInput4"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailInput4" />
-
-    <ImageView
-        android:id="@+id/imageView24"
-        android:layout_width="35dp"
-        android:layout_height="30dp"
+        android:id="@+id/btRefresh"
+        android:layout_width="31dp"
+        android:layout_height="26dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="60dp"
         android:src="@drawable/icon_de_refresh"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.277"
-        app:layout_constraintStart_toEndOf="@+id/senhaInput4"
-        app:layout_constraintTop_toBottomOf="@+id/emailInput4" />
+        app:layout_constraintStart_toEndOf="@+id/textLivros"
+        app:layout_constraintTop_toBottomOf="@+id/pesquisarInput" />
 
     <ImageView
         android:id="@+id/imageView22"
-        android:layout_width="371dp"
-        android:layout_height="455dp"
-        android:layout_marginTop="252dp"
+        android:layout_width="417dp"
+        android:layout_height="440dp"
+        android:layout_marginTop="260dp"
         android:src="@drawable/captura_de_tela__1_"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/ivFoto9"
-        android:layout_width="45dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="76dp"
+        android:id="@+id/imgLivro1"
+        android:layout_width="59dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/senhaInput4"
+        app:layout_constraintTop_toBottomOf="@+id/textLivros"
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/ivFoto10"
-        android:layout_width="45dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/imgLivro2"
+        android:layout_width="59dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.273"
+        app:layout_constraintHorizontal_bias="0.204"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivFoto9"
+        app:layout_constraintTop_toBottomOf="@+id/imgLivro1"
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/ivFoto12"
-        android:layout_width="45dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/imgLivro3"
+        android:layout_width="59dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.273"
+        app:layout_constraintHorizontal_bias="0.204"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivFoto10"
+        app:layout_constraintTop_toBottomOf="@+id/imgLivro2"
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/ivFoto11"
-        android:layout_width="45dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/imgLivro4"
+        android:layout_width="59dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.273"
+        app:layout_constraintHorizontal_bias="0.204"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivFoto12"
+        app:layout_constraintTop_toBottomOf="@+id/imgLivro3"
         tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView33"
+        android:id="@+id/descricaoLivro1"
         android:layout_width="172dp"
         android:layout_height="33dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="88dp"
         android:layout_marginEnd="72dp"
-        android:text="Livro: Desconhecido  Autor: Mistério Gênero: Indecifrável"
-        android:textAlignment="center"
+        android:fontFamily="@font/poppins_light"
+        android:gravity="left"
+        android:hint="Descrição livro"
+        android:textAlignment="gravity"
+        android:textColor="#000000"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
-        app:layout_constraintStart_toEndOf="@+id/ivFoto9"
-        app:layout_constraintTop_toBottomOf="@+id/senhaInput4" />
+        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintStart_toEndOf="@+id/imgLivro1"
+        app:layout_constraintTop_toBottomOf="@+id/textLivros" />
 
     <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/descricaoLivro4"
         android:layout_width="172dp"
         android:layout_height="33dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="72dp"
-        android:text="Livro: Desconhecido  Autor(a): Mistério Gênero: Indecifrável"
-        android:textAlignment="center"
+        android:fontFamily="@font/poppins_light"
+        android:hint="Descrição livro"
+        android:textAlignment="gravity"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
-        app:layout_constraintStart_toEndOf="@+id/ivFoto11"
-        app:layout_constraintTop_toBottomOf="@+id/textView31" />
+        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintStart_toEndOf="@+id/imgLivro4"
+        app:layout_constraintTop_toBottomOf="@+id/descricaoLivro3" />
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/descricaoLivro3"
         android:layout_width="172dp"
         android:layout_height="33dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="60dp"
-        android:text="Livro: Desconhecido  Autor: Mistério Gênero: Indecifrável"
-        android:textAlignment="center"
+        android:fontFamily="@font/poppins_light"
+        android:hint="Descrição livro"
+        android:textAlignment="gravity"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
-        app:layout_constraintStart_toEndOf="@+id/ivFoto12"
-        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintStart_toEndOf="@+id/imgLivro3"
+        app:layout_constraintTop_toBottomOf="@+id/descricaoLivro2" />
 
     <ImageView
         android:id="@+id/imageView23"
@@ -204,22 +198,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView32"
+        android:id="@+id/descricaoLivro2"
         android:layout_width="172dp"
         android:layout_height="33dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="72dp"
-        android:text="Livro: Desconhecido  Autor(a): Mistério Gênero: Indecifrável"
-        android:textAlignment="center"
+        android:fontFamily="@font/poppins_light"
+        android:hint="Descrição livro"
+        android:textAlignment="gravity"
+        android:textColor="#000000"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
-        app:layout_constraintStart_toEndOf="@+id/ivFoto10"
-        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintStart_toEndOf="@+id/imgLivro2"
+        app:layout_constraintTop_toBottomOf="@+id/descricaoLivro1" />
 
     <ImageView
-        android:id="@+id/imageView25"
+        android:id="@+id/btPesquisar"
         android:layout_width="23dp"
         android:layout_height="33dp"
         android:layout_marginTop="140dp"
@@ -228,8 +224,61 @@
         app:layout_constraintBottom_toBottomOf="@+id/emailInput2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.931"
-        app:layout_constraintStart_toStartOf="@+id/emailInput4"
+        app:layout_constraintStart_toStartOf="@+id/pesquisarInput"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/nomeLivro1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:hint="Nome Livro"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView22" />
+
+    <TextView
+        android:id="@+id/nomeLivro2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:hint="Nome Livro"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descricaoLivro1" />
+
+    <TextView
+        android:id="@+id/nomeLivro3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:hint="Nome Livro"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descricaoLivro2" />
+
+    <TextView
+        android:id="@+id/nomeLivro4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:hint="Nome Livro"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descricaoLivro3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
