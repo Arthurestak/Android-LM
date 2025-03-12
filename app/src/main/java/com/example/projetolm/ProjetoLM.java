@@ -2,7 +2,7 @@ package com.example.projetolm;
 
 import android.app.Application;
 
-public class ProjetoLM extends Application {
+public class ProjetoLM extends Application{
 
     private String idPessoaJava;
 
