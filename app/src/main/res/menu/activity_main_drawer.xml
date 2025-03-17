@@ -19,9 +19,6 @@
             android:icon="@drawable/fa_team_fontawesome_fontawesome_crown_512"
             android:title="@string/menu_assinatura" />
 
-        <item
-            android:id="@+id/nav_meuslivros"
-            android:icon="@drawable/livro"
-            android:title="@string/menu_meuslivros" />
+        
     </group>
 </menu>

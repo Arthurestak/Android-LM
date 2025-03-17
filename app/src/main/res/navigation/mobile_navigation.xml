@@ -23,10 +23,4 @@
         android:label="@string/menu_assinatura"
         tools:layout="@layout/fragment_assinatura" />
 
-    <fragment
-        android:id="@+id/nav_meuslivros"
-        android:name="com.example.projetolm.ui.meuslivros.MeusLivrosFragment"
-        android:label="@string/menu_meuslivros"
-        tools:layout="@layout/fragment_meuslivros" />
-
 </navigation>
