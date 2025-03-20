@@ -529,7 +529,8 @@ public class LivrosFragment extends Fragment {
                         }
 
                         nomeLivro2.setText(nome);
-                        descricaoLivro2.setText(descricao);
+                        descricaoLivro2.setText(descricao);                       /* arthurestak@gmail.com
+                                                                                     Arthur2007-          */
                         Glide.with(requireContext())
                                 .load(imagemUrl)
                                 .into(imgLivro2);
