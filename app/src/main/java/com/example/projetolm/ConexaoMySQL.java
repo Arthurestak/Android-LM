@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 
 public class ConexaoMySQL {
-    private static final String URL = "jdbc:mysql://10.160.215.181:3307/projetolm_android";
+    private static final String URL = "jdbc:mysql://10.160.215.152:3307/projetolm_android";
     private static final String USUARIO = "senac"; //super usuario do banco de dados
     private static final String SENHA = "123";
 

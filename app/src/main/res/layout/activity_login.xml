@@ -134,7 +134,7 @@
         android:paddingLeft="10dp"
         android:textColor="@color/black"
         android:textColorHint="#000000"
-        android:textColorLink="#0C081E"
+        android:textColorLink="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
