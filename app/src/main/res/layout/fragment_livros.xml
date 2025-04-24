@@ -217,20 +217,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.647"
         app:layout_constraintStart_toEndOf="@+id/imgLivro2"
-        app:layout_constraintTop_toBottomOf="@+id/descricaoLivro1" />
+        app:layout_constraintTop_toBottomOf="@+id/descricaoLivro1" /><![CDATA[
+
+    app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="@+id/pesquisarInput"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ]]>
 
     <ImageView
         android:id="@+id/btPesquisar"
         android:layout_width="23dp"
         android:layout_height="33dp"
         android:layout_marginTop="140dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginEnd="92dp"
         android:src="@drawable/icon_de_pesquisa"
         app:layout_constraintEnd_toEndOf="parent"
- />       app:layout_constraintHorizontal_bias="0.931"
-        app:layout_constraintStart_toStartOf="@+id/pesquisarInput"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/nomeLivro1"
