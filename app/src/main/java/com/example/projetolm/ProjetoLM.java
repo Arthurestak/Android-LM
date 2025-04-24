@@ -13,7 +13,4 @@ public class ProjetoLM extends Application {
     public void setIdPessoaJava(String idPessoaJava){
         this.idPessoaJava = idPessoaJava;
     }
-
-
-
 }

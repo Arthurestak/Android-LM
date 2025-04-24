@@ -34,8 +34,9 @@ public class PerfilFragment extends Fragment {
 
     private FragmentPerfilBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Infla o layout do fragmento corretamente
         PerfilViewModel perfilViewModel =
                 new ViewModelProvider(this).get(PerfilViewModel.class);
 
@@ -44,12 +45,27 @@ public class PerfilFragment extends Fragment {
         ProjetoLM app = (ProjetoLM) getActivity().getApplicationContext();
         String idPessoaJava = app.getIdPessoaJava();
 
-        ImageView btAssine = view.findViewById(R.id.btAssine);
+        // Acessa os elementos da interface usando a view inflada
         ImageView btSalvar = view.findViewById(R.id.btSalvar);
-
+        ImageView btAssine = view.findViewById(R.id.btAssine);
         EditText campoNome = view.findViewById(R.id.campoNome);
         EditText campoEmail = view.findViewById(R.id.campoEmail);
         EditText campoCpf = view.findViewById(R.id.campoCpf);
+
+        // Garante que o botão foi encontrado
+        if (btSalvar != null) {
+            btSalvar.setOnClickListener(v -> {
+                String nome = campoNome.getText().toString().trim();
+                String email = campoEmail.getText().toString().trim();
+                String cpf = campoCpf.getText().toString().trim();
+
+                // Aqui você pode salvar os dados, chamar ViewModel, etc.
+                Toast.makeText(getContext(), "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
+            });
+        } else {
+            Log.e("PerfilFragment", "btSalvar é null — ID incorreto ou layout não inflado?");
+        }
+
 
         try {
             Connection connection = ConexaoMySQL.conectar();
@@ -72,8 +88,8 @@ public class PerfilFragment extends Fragment {
         btAssine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
-                    startActivity(intent);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                startActivity(intent);
             }
         });
         btSalvar.setOnClickListener(new View.OnClickListener() {

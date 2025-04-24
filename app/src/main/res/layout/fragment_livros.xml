@@ -148,7 +148,6 @@
         android:layout_marginTop="88dp"
         android:layout_marginEnd="72dp"
         android:fontFamily="@font/poppins_light"
-        android:gravity="left"
         android:hint="Descrição livro"
         android:textAlignment="textEnd"
         android:textColor="#F34D4D4D"
@@ -227,9 +226,8 @@
         android:layout_marginTop="140dp"
         android:layout_marginEnd="84dp"
         android:src="@drawable/icon_de_pesquisa"
-        app:layout_constraintBottom_toBottomOf="@+id/emailInput2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.931"
+ />       app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="@+id/pesquisarInput"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />

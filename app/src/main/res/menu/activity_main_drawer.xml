@@ -18,7 +18,5 @@
             android:id="@+id/nav_assinatura"
             android:icon="@drawable/fa_team_fontawesome_fontawesome_crown_512"
             android:title="@string/menu_assinatura" />
-
-        
     </group>
 </menu>

@@ -88,11 +88,12 @@ btEntrar.setOnClickListener(new View.OnClickListener() {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                    ProjetoLM app = (ProjetoLM) getApplicationContext();
+                ProjetoLM app = (ProjetoLM) getApplicationContext();
                     app.setIdPessoaJava(rs.getString("id_pessoa"));
                 Intent intent = new Intent(Login.this,MainActivity.class);
                 startActivity(intent);
                 finish();
+
             }else{
                 Toast.makeText(Login.this, "Email ou Senha incorretos!", Toast.LENGTH_SHORT).show();
             }
