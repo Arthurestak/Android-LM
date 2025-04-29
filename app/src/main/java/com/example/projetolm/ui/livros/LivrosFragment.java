@@ -72,10 +72,10 @@ public class LivrosFragment extends Fragment {
 
 
         try {
-            String id1 = "select id_livros from livros where nome_arquivos = ?";
-            String imagemLivro = "select nome_arquivos from livros order by rand()";
-            String nomeLivro = "select nome_livro from livros where nome_arquivos = ?";
-            String descricaoLivro = "select categoria_livro from livros where nome_arquivos = ?";
+            String id1 = "select id_livro from livros where capa_img = ?";
+            String imagemLivro = "select capa_img from livros order by rand()";
+            String nomeLivro = "select titulo from livros where capa_img = ?";
+            String descricaoLivro = "select categoria from livros where capa_img = ?";
 
             PreparedStatement stmtId = connection.prepareStatement(id1);
             PreparedStatement stmt = connection.prepareStatement(imagemLivro);
@@ -84,19 +84,19 @@ public class LivrosFragment extends Fragment {
             ResultSet rs = stmt.executeQuery();
 
             if(rs.next()){
-                imageUrl[0] = rs.getString("nome_arquivos");
+                imageUrl[0] = rs.getString("capa_img");
                 stmt1.setString(1, imageUrl[0]);
                 stmt2.setString(1, imageUrl[0]);
                 stmtId.setString(1, imageUrl[0]);
                 ResultSet rs1 = stmt1.executeQuery();
                 if(rs1.next()){
-                    nomeLivro1.setText(rs1.getString("nome_livro"));
+                    nomeLivro1.setText(rs1.getString("titulo"));
                     ResultSet rs2 = stmt2.executeQuery();
                     if(rs2.next()){
-                        descricaoLivro1.setText(rs2.getString("categoria_livro"));
+                        descricaoLivro1.setText(rs2.getString("categoria"));
                         ResultSet rs3 = stmtId.executeQuery();
                         if(rs3.next()) {
-                            listaIds[0] = rs3.getString("id_livros");
+                            listaIds[0] = rs3.getString("id_livro");
 
                         }
                     }
@@ -110,10 +110,10 @@ public class LivrosFragment extends Fragment {
             throw new RuntimeException(e);
         }
         try {
-            String id2 = "select id_livros from livros where nome_arquivos = ?";
-            String imagem2Livro = "select nome_arquivos from livros where id_livros not in (?) order by rand()";
-            String nome2Livro = "select nome_livro from livros where nome_arquivos = ?";
-            String descricao2Livro = "select categoria_livro from livros where nome_arquivos = ?";
+            String id2 = "select id_livro from livros where capa_img = ?";
+            String imagem2Livro = "select capa_img from livros where id_livro not in (?) order by rand()";
+            String nome2Livro = "select titulo from livros where capa_img = ?";
+            String descricao2Livro = "select categoria from livros where capa_img = ?";
             PreparedStatement stmtId = connection.prepareStatement(id2);
             PreparedStatement stmt = connection.prepareStatement(imagem2Livro);
             PreparedStatement stmt1 = connection.prepareStatement(nome2Livro);
@@ -122,22 +122,22 @@ public class LivrosFragment extends Fragment {
             ResultSet rs = stmt.executeQuery();
 
             if(rs.next()){
-                image2Url[0] = rs.getString("nome_arquivos");
+                image2Url[0] = rs.getString("capa_img");
                 stmt1.setString(1, image2Url[0]);
                 stmt2.setString(1, image2Url[0]);
                 stmtId.setString(1, image2Url[0]);
                 ResultSet rs1 = stmt1.executeQuery();
 
                 if(rs1.next()){
-                    nomeLivro2.setText(rs1.getString("nome_livro"));
+                    nomeLivro2.setText(rs1.getString("titulo"));
                     ResultSet rs2 = stmt2.executeQuery();
 
                     if(rs2.next()){
-                        descricaoLivro2.setText(rs2.getString("categoria_livro"));
+                        descricaoLivro2.setText(rs2.getString("categoria"));
                         ResultSet rs3 = stmtId.executeQuery();
 
                         if(rs3.next()) {
-                            listaIds[1] = rs3.getString("id_livros");
+                            listaIds[1] = rs3.getString("id_livro");
                         }
                     }
                 }
@@ -151,10 +151,10 @@ public class LivrosFragment extends Fragment {
             throw new RuntimeException(e);
         }
         try {
-            String id3 = "select id_livros from livros where nome_arquivos = ?";
-            String imagem3Livro = "select nome_arquivos from livros where id_livros not in (?,?) order by rand()";
-            String nome3Livro = "select nome_livro from livros where nome_arquivos = ?";
-            String descricao3Livro = "select categoria_livro from livros where nome_arquivos = ?";
+            String id3 = "select id_livro from livros where capa_img = ?";
+            String imagem3Livro = "select capa_img from livros where id_livro not in (?,?) order by rand()";
+            String nome3Livro = "select titulo from livros where capa_img = ?";
+            String descricao3Livro = "select categoria from livros where capa_img = ?";
             PreparedStatement stmtId = connection.prepareStatement(id3);
             PreparedStatement stmt = connection.prepareStatement(imagem3Livro);
             PreparedStatement stmt1 = connection.prepareStatement(nome3Livro);
@@ -166,7 +166,7 @@ public class LivrosFragment extends Fragment {
 
 
             if(rs.next()){
-                image3Url[0] = rs.getString("nome_arquivos");
+                image3Url[0] = rs.getString("capa_img");
                 stmt1.setString(1, image3Url[0]);
                 stmt2.setString(1, image3Url[0]);
                 stmtId.setString(1, image3Url[0]);
@@ -174,13 +174,13 @@ public class LivrosFragment extends Fragment {
 
 
                 if(rs1.next()){
-                    nomeLivro3.setText(rs1.getString("nome_livro"));
+                    nomeLivro3.setText(rs1.getString("titulo"));
                     ResultSet rs2 = stmt2.executeQuery();
                     if(rs2.next()){
-                        descricaoLivro3.setText(rs2.getString("categoria_livro"));
+                        descricaoLivro3.setText(rs2.getString("categoria"));
                         ResultSet rs3 = stmtId.executeQuery();
                         if(rs3.next()) {
-                            listaIds[2] = rs3.getString("id_livros");
+                            listaIds[2] = rs3.getString("id_livro");
                         }
                     }
 
@@ -196,10 +196,10 @@ public class LivrosFragment extends Fragment {
         }
 
         try {
-            String id4 = "select id_livros from livros where nome_arquivos = ?";
-            String imagem4Livro = "select nome_arquivos from livros where id_livros not in (?,?,?) order by rand()";
-            String nome4Livro = "select nome_livro from livros where nome_arquivos = ?";
-            String descricao4Livro = "select categoria_livro from livros where nome_arquivos = ?";
+            String id4 = "select id_livro from livros where capa_img = ?";
+            String imagem4Livro = "select capa_img from livros where id_livro not in (?,?,?) order by rand()";
+            String nome4Livro = "select titulo from livros where capa_img = ?";
+            String descricao4Livro = "select categoria from livros where capa_img = ?";
             PreparedStatement stmtId = connection.prepareStatement(id4);
             PreparedStatement stmt = connection.prepareStatement(imagem4Livro);
             PreparedStatement stmt1 = connection.prepareStatement(nome4Livro);
@@ -211,7 +211,7 @@ public class LivrosFragment extends Fragment {
 
 
             if(rs.next()){
-                image4Url[0] = rs.getString("nome_arquivos");
+                image4Url[0] = rs.getString("capa_img");
                 stmtId.setString(1, imageUrl[0]);
                 stmt.setString(1, listaIds[2]);
                 stmt1.setString(1, image4Url[0]);
@@ -220,13 +220,13 @@ public class LivrosFragment extends Fragment {
                 ResultSet rs1 = stmt1.executeQuery();
 
                 if(rs1.next()){
-                    nomeLivro4.setText(rs1.getString("nome_livro"));
+                    nomeLivro4.setText(rs1.getString("titulo"));
                     ResultSet rs2 = stmt2.executeQuery();
                     if(rs2.next()){
-                        descricaoLivro4.setText(rs2.getString("categoria_livro"));
+                        descricaoLivro4.setText(rs2.getString("categoria"));
                         ResultSet rs3 = stmtId.executeQuery();
                         if(rs3.next()) {
-                            listaIds[3] = rs3.getString("id_livros");
+                            listaIds[3] = rs3.getString("id_livro");
                         }
                     }
                 }
@@ -245,10 +245,10 @@ public class LivrosFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     pesquisarInput.setText("");
-                    String id1 = "select id_livros from livros where nome_arquivos = ?";
-                    String imagemLivro = "select nome_arquivos from livros order by rand()";
-                    String nomeLivro = "select nome_livro from livros where nome_arquivos = ?";
-                    String descricaoLivro = "select categoria_livro from livros where nome_arquivos = ?";
+                    String id1 = "select id_livro from livros where capa_img = ?";
+                    String imagemLivro = "select capa_img from livros order by rand()";
+                    String nomeLivro = "select titulo from livros where capa_img = ?";
+                    String descricaoLivro = "select categoria from livros where capa_img = ?";
 
                     PreparedStatement stmtId = connection.prepareStatement(id1);
                     PreparedStatement stmt = connection.prepareStatement(imagemLivro);
@@ -258,19 +258,19 @@ public class LivrosFragment extends Fragment {
 
 
                     if(rs.next()){
-                        imageUrl[0] = rs.getString("nome_arquivos");
+                        imageUrl[0] = rs.getString("capa_img");
                         stmt1.setString(1, imageUrl[0]);
                         stmt2.setString(1, imageUrl[0]);
                         stmtId.setString(1, imageUrl[0]);
                         ResultSet rs1 = stmt1.executeQuery();
                         if(rs1.next()){
-                            nomeLivro1.setText(rs1.getString("nome_livro"));
+                            nomeLivro1.setText(rs1.getString("titulo"));
                             ResultSet rs2 = stmt2.executeQuery();
                             if(rs2.next()){
-                                descricaoLivro1.setText(rs2.getString("categoria_livro"));
+                                descricaoLivro1.setText(rs2.getString("categoria"));
                                 ResultSet rs3 = stmtId.executeQuery();
                                 if(rs3.next()) {
-                                    listaIds[0] = rs3.getString("id_livros");
+                                    listaIds[0] = rs3.getString("id_livro");
 
                                 }
                             }
@@ -283,10 +283,10 @@ public class LivrosFragment extends Fragment {
                     throw new RuntimeException(e);
                 }
                 try {
-                    String id2 = "select id_livros from livros where nome_arquivos = ?";
-                    String imagem2Livro = "select nome_arquivos from livros where id_livros not in (?) order by rand()";
-                    String nome2Livro = "select nome_livro from livros where nome_arquivos = ?";
-                    String descricao2Livro = "select categoria_livro from livros where nome_arquivos = ?";
+                    String id2 = "select id_livro from livros where capa_img = ?";
+                    String imagem2Livro = "select capa_img from livros where id_livro not in (?) order by rand()";
+                    String nome2Livro = "select titulo from livros where capa_img = ?";
+                    String descricao2Livro = "select categoria from livros where capa_img = ?";
                     PreparedStatement stmtId = connection.prepareStatement(id2);
                     PreparedStatement stmt = connection.prepareStatement(imagem2Livro);
                     PreparedStatement stmt1 = connection.prepareStatement(nome2Livro);
@@ -295,22 +295,22 @@ public class LivrosFragment extends Fragment {
                     ResultSet rs = stmt.executeQuery();
 
                     if(rs.next()){
-                        image2Url[0] = rs.getString("nome_arquivos");
+                        image2Url[0] = rs.getString("capa_img");
                         stmt1.setString(1, image2Url[0]);
                         stmt2.setString(1, image2Url[0]);
                         stmtId.setString(1, image2Url[0]);
                         ResultSet rs1 = stmt1.executeQuery();
 
                         if(rs1.next()){
-                            nomeLivro2.setText(rs1.getString("nome_livro"));
+                            nomeLivro2.setText(rs1.getString("titulo"));
                             ResultSet rs2 = stmt2.executeQuery();
 
                             if(rs2.next()){
-                                descricaoLivro2.setText(rs2.getString("categoria_livro"));
+                                descricaoLivro2.setText(rs2.getString("categoria"));
                                 ResultSet rs3 = stmtId.executeQuery();
 
                                 if(rs3.next()) {
-                                    listaIds[1] = rs3.getString("id_livros");
+                                    listaIds[1] = rs3.getString("id_livro");
                                 }
                             }
                         }
@@ -325,10 +325,10 @@ public class LivrosFragment extends Fragment {
                     throw new RuntimeException(e);
                 }
                 try {
-                    String id3 = "select id_livros from livros where nome_arquivos = ?";
-                    String imagem3Livro = "select nome_arquivos from livros where id_livros not in (?,?) order by rand()";
-                    String nome3Livro = "select nome_livro from livros where nome_arquivos = ?";
-                    String descricao3Livro = "select categoria_livro from livros where nome_arquivos = ?";
+                    String id3 = "select id_livro from livros where capa_img = ?";
+                    String imagem3Livro = "select capa_img from livros where id_livro not in (?,?) order by rand()";
+                    String nome3Livro = "select titulo from livros where capa_img = ?";
+                    String descricao3Livro = "select categoria from livros where capa_img = ?";
 
                     PreparedStatement stmtId = connection.prepareStatement(id3);
                     PreparedStatement stmt = connection.prepareStatement(imagem3Livro);
@@ -340,20 +340,20 @@ public class LivrosFragment extends Fragment {
                     ResultSet rs = stmt.executeQuery();
 
                     if(rs.next()){
-                        image3Url[0] = rs.getString("nome_arquivos");
+                        image3Url[0] = rs.getString("capa_img");
                         stmt1.setString(1, image3Url[0]);
                         stmt2.setString(1, image3Url[0]);
                         stmtId.setString(1, image3Url[0]);
                         ResultSet rs1 = stmt1.executeQuery();
 
                         if(rs1.next()){
-                            nomeLivro3.setText(rs1.getString("nome_livro"));
+                            nomeLivro3.setText(rs1.getString("titulo"));
                             ResultSet rs2 = stmt2.executeQuery();
                             if(rs2.next()){
-                                descricaoLivro3.setText(rs2.getString("categoria_livro"));
+                                descricaoLivro3.setText(rs2.getString("categoria"));
                                 ResultSet rs3 = stmtId.executeQuery();
                                 if(rs3.next()){
-                                    listaIds[2] = rs3.getString("id_livros");
+                                    listaIds[2] = rs3.getString("id_livro");
                                 }
 
                             }
@@ -368,9 +368,9 @@ public class LivrosFragment extends Fragment {
                 }
 
                 try {
-                    String imagem4Livro = "select nome_arquivos from livros where id_livros not in (?,?,?) order by rand()";
-                    String nome4Livro = "select nome_livro from livros where nome_arquivos = ?";
-                    String descricao4Livro = "select categoria_livro from livros where nome_arquivos = ?";
+                    String imagem4Livro = "select capa_img from livros where id_livro not in (?,?,?) order by rand()";
+                    String nome4Livro = "select titulo from livros where capa_img = ?";
+                    String descricao4Livro = "select categoria from livros where capa_img = ?";
                     PreparedStatement stmt = connection.prepareStatement(imagem4Livro);
                     PreparedStatement stmt1 = connection.prepareStatement(nome4Livro);
                     PreparedStatement stmt2 = connection.prepareStatement(descricao4Livro);
@@ -381,16 +381,16 @@ public class LivrosFragment extends Fragment {
 
 
                     if(rs.next()){
-                        image4Url[0] = rs.getString("nome_arquivos");
+                        image4Url[0] = rs.getString("capa_img");
                         stmt1.setString(1, image4Url[0]);
                         stmt2.setString(1, image4Url[0]);
                         ResultSet rs1 = stmt1.executeQuery();
 
                         if(rs1.next()){
-                            nomeLivro4.setText(rs1.getString("nome_livro"));
+                            nomeLivro4.setText(rs1.getString("titulo"));
                             ResultSet rs2 = stmt2.executeQuery();
                             if(rs2.next()){
-                                descricaoLivro4.setText(rs2.getString("categoria_livro"));
+                                descricaoLivro4.setText(rs2.getString("categoria"));
                             }
                         }
                         Glide.with(requireContext())
@@ -471,8 +471,8 @@ public class LivrosFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     if (!pesquisarInput.getText().toString().isEmpty()){
-                        String pesquisa = "select * from livros where nome_livro like ?";
-                        String buscaIds = "select id_livros from livros where nome_arquivos = ?";
+                        String pesquisa = "select * from livros where titulo like ?";
+                        String buscaIds = "select id_livro from livros where capa_img = ?";
                         PreparedStatement stmt = connection.prepareStatement(pesquisa);
                         PreparedStatement stmt1 = connection.prepareStatement(buscaIds);
 
@@ -482,14 +482,14 @@ public class LivrosFragment extends Fragment {
 
                         if(rs.next()){
 
-                            String imagemUrl = rs.getString("nome_arquivos");
-                            String nome = rs.getString("nome_livro");
-                            String descricao = rs.getString("categoria_livro");
+                            String imagemUrl = rs.getString("capa_img");
+                            String nome = rs.getString("titula");
+                            String descricao = rs.getString("categoria");
 
                             stmt1.setString(1, imagemUrl);
                             ResultSet rs1 = stmt1.executeQuery();
                             if(rs1.next()){
-                                listaIds[0] = rs1.getString("id_livros");
+                                listaIds[0] = rs1.getString("id_livro");
                             }
 
                             nomeLivro1.setText(nome);
@@ -506,8 +506,8 @@ public class LivrosFragment extends Fragment {
                     throw new RuntimeException(e);
                 }
                 try {
-                    String pesquisa = "select * from livros where id_livros not in (?) and nome_livro like ? ";
-                    String buscaIds = "select id_livros from livros where nome_arquivos = ?";
+                    String pesquisa = "select * from livros where id_livro not in (?) and titulo like ? ";
+                    String buscaIds = "select id_livro from livros where capa_img = ?";
                     PreparedStatement stmt = connection.prepareStatement(pesquisa);
                     PreparedStatement stmt1 = connection.prepareStatement(buscaIds);
 
@@ -518,14 +518,14 @@ public class LivrosFragment extends Fragment {
 
                     if(rs.next()){
 
-                        String imagemUrl = rs.getString("nome_arquivos");
-                        String nome = rs.getString("nome_livro");
-                        String descricao = rs.getString("categoria_livro");
+                        String imagemUrl = rs.getString("capa_img");
+                        String nome = rs.getString("titulo");
+                        String descricao = rs.getString("categoria");
 
                         stmt1.setString(1, imagemUrl);
                         ResultSet rs1 = stmt1.executeQuery();
                         if(rs1.next()){
-                            listaIds[1] = rs1.getString("id_livros");
+                            listaIds[1] = rs1.getString("id_livro");
                         }
 
                         nomeLivro2.setText(nome);
@@ -539,8 +539,8 @@ public class LivrosFragment extends Fragment {
                     throw new RuntimeException(e);
                 }
                 try {
-                    String pesquisa = "select * from livros where id_livros not in (?,?) and nome_livro like ?";
-                    String buscaIds = "select id_livros from livros where nome_arquivos = ?";
+                    String pesquisa = "select * from livros where id_livro not in (?,?) and titulo like ?";
+                    String buscaIds = "select id_livro from livros where capa_img = ?";
                     PreparedStatement stmt = connection.prepareStatement(pesquisa);
                     PreparedStatement stmt1 = connection.prepareStatement(buscaIds);
 
@@ -552,14 +552,14 @@ public class LivrosFragment extends Fragment {
 
                     if(rs.next()){
 
-                        String imagemUrl = rs.getString("nome_arquivos");
-                        String nome = rs.getString("nome_livro");
-                        String descricao = rs.getString("categoria_livro");
+                        String imagemUrl = rs.getString("capa_img");
+                        String nome = rs.getString("titulo");
+                        String descricao = rs.getString("categoria");
 
                         stmt1.setString(1, imagemUrl);
                         ResultSet rs1 = stmt1.executeQuery();
                         if(rs1.next()){
-                            listaIds[2] = rs1.getString("id_livros");
+                            listaIds[2] = rs1.getString("id_livro");
                         }
 
                         nomeLivro3.setText(nome);
@@ -572,8 +572,8 @@ public class LivrosFragment extends Fragment {
                     throw new RuntimeException(e);
                 }
                 try {
-                    String pesquisa = "select * from livros where id_livros not in (?,?,?) and nome_livro like ?";
-                    String buscaIds = "select id_livros from livros where nome_arquivos = ?";
+                    String pesquisa = "select * from livros where id_livro not in (?,?,?) and titulo like ?";
+                    String buscaIds = "select id_livro from livros where capa_img = ?";
                     PreparedStatement stmt = connection.prepareStatement(pesquisa);
                     PreparedStatement stmt1 = connection.prepareStatement(buscaIds);
 

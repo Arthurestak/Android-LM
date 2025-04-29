@@ -10,6 +10,11 @@
         android:title="@string/menu_livros" />
 
         <item
+            android:id="@+id/nav_autor"
+            android:icon="@drawable/mao"
+            android:title="@string/menu_autor" />
+
+        <item
             android:id="@+id/nav_perfil"
             android:icon="@drawable/perfil"
             android:title="@string/menu_perfil" />

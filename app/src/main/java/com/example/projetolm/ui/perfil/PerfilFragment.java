@@ -69,7 +69,7 @@ public class PerfilFragment extends Fragment {
 
         try {
             Connection connection = ConexaoMySQL.conectar();
-            String selectPessoa = "select * from pessoa where id_pessoa = ?";
+            String selectPessoa = "select * from pessoas where id_pessoa = ?";
             PreparedStatement stmt = connection.prepareStatement(selectPessoa);
             stmt.setString(1, idPessoaJava);
             ResultSet rs = stmt.executeQuery();

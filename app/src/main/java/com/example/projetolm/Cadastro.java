@@ -51,8 +51,14 @@ public class Cadastro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Connection connection = ConexaoMySQL.conectar();
+
+                if (connection == null) {
+                    Toast.makeText(Cadastro.this, "Erro ao conectar ao banco de dados.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 try{
-                    String insertCadastro = "Insert into pessoa (nome,email,cpf,senha) values (?,?,?,?)";
+                    String insertCadastro = "Insert into pessoas (nome,email,cpf,senha) values (?,?,?,?)";
                     PreparedStatement stmt = connection.prepareStatement(insertCadastro);
                     stmt.setString(1, nomeInputCadastro.getText().toString());
                     stmt.setString(2, emailInputCadastro.getText().toString());

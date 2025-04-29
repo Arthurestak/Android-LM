@@ -23,4 +23,10 @@
         android:label="@string/menu_assinatura"
         tools:layout="@layout/fragment_assinatura" />
 
+    <fragment
+        android:id="@+id/nav_autor"
+        android:name="com.example.projetolm.ui.autor.AutorFragment"
+        android:label="@string/menu_assinatura"
+        tools:layout="@layout/fragment_autor" />
+
 </navigation>

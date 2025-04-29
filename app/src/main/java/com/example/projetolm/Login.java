@@ -80,8 +80,13 @@ btEntrar.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         Connection connection = ConexaoMySQL.conectar();
+
+        if (connection == null) {
+            Toast.makeText(Login.this, "Erro ao conectar ao banco de dados.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         try {
-            String selectLogin = "select * from pessoa where email = ? and senha = ?";
+            String selectLogin = "select * from pessoas where email = ? and senha = ?";
             PreparedStatement stmt = connection.prepareStatement(selectLogin);
             stmt.setString(1, emailInput.getText().toString());
             stmt.setString(2, senhaInput.getText().toString());
