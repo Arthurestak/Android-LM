@@ -9,212 +9,223 @@
 
 
     <ImageView
-        android:id="@+id/imageView20"
+        android:id="@+id/imageView7"
         android:layout_width="436dp"
         android:layout_height="856dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="92dp"
         android:rotation="90"
         android:src="@drawable/captura_de_tela__9_"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/nomeLivro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:hint="Nome Livro"
-        android:textAlignment="textEnd"
+    <EditText
+        android:id="@+id/pesquisarInputAutor"
+        style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+        android:layout_width="237dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="5px"
+        android:layout_marginTop="34dp"
+        android:background="#0B0A0A"
+        android:backgroundTint="#D9D9D9"
+        android:ems="10"
+        android:fontFamily="@font/poppins_light"
+        android:hint="Pesquisar"
+        android:hyphenationFrequency="normal"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorLink="#000000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.401"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
-
-    <TextView
-        android:id="@+id/nomeLivro6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:hint="Nome Livro"
-        android:textAlignment="textEnd"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.401"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
-
-    <TextView
-        android:id="@+id/nomeLivro7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:hint="Nome Livro"
-        android:textAlignment="textEnd"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.401"
-        app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView6"
+        android:layout_width="343dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="17dp"
+        android:src="@drawable/linha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pesquisarInputAutor" />
+
+    <ImageView
+        android:id="@+id/btPesquisarAutor"
+        android:layout_width="23dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="96dp"
+        android:src="@drawable/icon_de_pesquisa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btRefreshAutor"
+        android:layout_width="31dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="108dp"
+        android:src="@drawable/icon_de_refresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toEndOf="@+id/textLivros"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+    <EditText
+        android:id="@+id/textLivros2"
+        style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+        android:layout_width="150dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginEnd="100dp"
+        android:background="#FB000000"
+        android:backgroundTint="#d9d9d9"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:cursorVisible="false"
+        android:editable="false"
+        android:ems="10"
+        android:enabled="false"
+        android:fontFamily="@font/poppins_light"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:text="Livros"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHint="#000000"
+        android:textColorLink="#0C081E"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+    <ImageView
+        android:id="@+id/imageView8"
         android:layout_width="130dp"
         android:layout_height="46dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="92dp"
         android:src="@drawable/captura_de_tela_2025_03_11_162658"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextText2"
-        android:layout_width="237dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="32dp"
-        android:background="#0B0A0A"
-        android:backgroundTint="#D9D9D9"
-        android:ems="10"
-        android:hint="Pesquisar"
-        android:inputType="text"
-        android:textSize="14sp"
+    <TextView
+        android:id="@+id/nomeLivroAutor1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:hint="Nome Livro"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/imgArquivo1"
+        app:layout_constraintTop_toBottomOf="@+id/btRefreshAutor" />
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="23dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="92dp"
-        android:src="@drawable/icon_de_pesquisa"
+    <TextView
+        android:id="@+id/nomeLivroAutor2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:hint="Nome Livro"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/imgArquivo2"
+        app:layout_constraintTop_toBottomOf="@+id/situacaoLivro1" />
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="280dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/meus_livros"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="343dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/linha"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
-
-    <EditText
-        android:id="@+id/editTextText3"
-        android:layout_width="150dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="12dp"
-        android:background="#FB000000"
-        android:backgroundTint="#d9d9d9"
-        android:editable="false"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Livros"
-        android:textAlignment="center"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
-
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="31dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/icon_de_refresh"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toEndOf="@+id/editTextText3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="59dp"
-        android:layout_height="79dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3"
-        tools:src="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="59dp"
-        android:layout_height="79dp"
-        android:layout_marginStart="68dp"
+    <TextView
+        android:id="@+id/nomeLivroAutor3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        tools:src="@tools:sample/avatars" />
+        android:fontFamily="@font/poppins_semibold"
+        android:hint="Nome Livro"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/imgArquivo3"
+        app:layout_constraintTop_toBottomOf="@+id/situacaoLivro2" />
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/imgArquivo1"
         android:layout_width="59dp"
         android:layout_height="79dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="380dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/livro" />
+
+    <ImageView
+        android:id="@+id/imgArquivo3"
+        android:layout_width="59dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgArquivo2"
+        tools:src="@drawable/livro" />
+
+    <ImageView
+        android:id="@+id/imgArquivo2"
+        android:layout_width="59dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgArquivo1"
+        tools:src="@drawable/livro" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/situacaoLivro2"
         android:layout_width="114dp"
         android:layout_height="29dp"
-        android:layout_marginTop="8dp"
-        android:text="Pendente"
-        android:textAlignment="center"
-        android:textColor="#C30000"
+        android:layout_marginTop="12dp"
+        android:text="Situacao"
+        android:textAlignment="textStart"
+        android:textColor="#999999"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.388"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/nomeLivro6" />
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/imgArquivo2"
+        app:layout_constraintTop_toBottomOf="@+id/nomeLivroAutor2" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/situacaoLivro1"
         android:layout_width="114dp"
         android:layout_height="29dp"
-        android:layout_marginTop="8dp"
-        android:text="Ativo"
-        android:textAlignment="center"
-        android:textColor="#2AB500"
+        android:layout_marginTop="12dp"
+        android:text="Situacao"
+        android:textAlignment="textStart"
+        android:textColor="#999999"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.388"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/nomeLivro" />
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/imgArquivo1"
+        app:layout_constraintTop_toBottomOf="@+id/nomeLivroAutor1" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/situacaoLivro3"
         android:layout_width="114dp"
         android:layout_height="29dp"
-        android:layout_marginTop="8dp"
-        android:text="Ativo"
-        android:textAlignment="center"
-        android:textColor="#2AB500"
+        android:layout_marginTop="12dp"
+        android:text="Situacao"
+        android:textAlignment="textStart"
+        android:textColor="#999999"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.388"
-        app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/nomeLivro7" />
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/imgArquivo3"
+        app:layout_constraintTop_toBottomOf="@+id/nomeLivroAutor3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

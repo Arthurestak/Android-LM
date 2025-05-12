@@ -53,11 +53,11 @@ public class Login extends AppCompatActivity{
         });
 
 
-emailInput = findViewById(R.id.emailInput);
-senhaInput = findViewById(R.id.senhaInput);
-btEntrar = findViewById(R.id.btEntrar);
-btRecuperarSenhaLogin = findViewById(R.id.btRecuperarSenhaLogin);
-btCadastreSeLogin = findViewById(R.id.btCadastreSeLogin);
+    emailInput = findViewById(R.id.emailInput);
+    senhaInput = findViewById(R.id.senhaInput);
+    btEntrar = findViewById(R.id.btEntrar);
+    btRecuperarSenhaLogin = findViewById(R.id.btRecuperarSenhaLogin);
+    btCadastreSeLogin = findViewById(R.id.btCadastreSeLogin);
 
 btRecuperarSenhaLogin.setOnClickListener(new View.OnClickListener() {
     @Override
