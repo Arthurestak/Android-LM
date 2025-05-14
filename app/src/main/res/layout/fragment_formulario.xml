@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.formulario.FormularioFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="13dp">
+
+        <EditText
+            android:id="@+id/emailInput10"
+            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+            android:layout_width="228dp"
+            android:layout_height="51dp"
+            android:layout_marginLeft="5px"
+            android:layout_marginTop="428dp"
+            android:background="#0B0A0A"
+            android:backgroundTint="#D9D9D9"
+            android:ems="10"
+            android:hyphenationFrequency="normal"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textColorLink="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView56"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="SENHA"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="494dp" />
+
+        <EditText
+            android:id="@+id/senhaInput8"
+            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+            android:layout_width="228dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="102dp"
+            android:layout_marginTop="350dp"
+            android:layout_marginEnd="100dp"
+            android:background="#FB000000"
+            android:backgroundTint="#d9d9d9"
+            android:ems="10"
+            android:inputType="text|textPassword"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="#000000"
+            android:textColorLink="#000000"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/senhaInput7"
+            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+            android:layout_width="228dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="102dp"
+            android:layout_marginEnd="100dp"
+            android:background="#FB000000"
+            android:backgroundTint="#d9d9d9"
+            android:ems="10"
+            android:inputType="text|textPassword"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="#000000"
+            android:textColorLink="#000000"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="509dp" />
+
+        <TextView
+            android:id="@+id/textView53"
+            android:layout_width="41dp"
+            android:layout_height="13dp"
+            android:background="#FFFFFF"
+            android:fontFamily="@font/poppins_light"
+            android:text="E-MAIL"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.254"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="413dp" />
+
+        <EditText
+            android:id="@+id/emailInput9"
+            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+            android:layout_width="228dp"
+            android:layout_height="51dp"
+            android:layout_marginLeft="5px"
+            android:layout_marginTop="270dp"
+            android:background="#0B0A0A"
+            android:backgroundTint="#D9D9D9"
+            android:ems="10"
+            android:hyphenationFrequency="normal"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textColorLink="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView54"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="332dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="SENHA"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="466dp"
+            android:layout_height="245dp"
+            android:src="@drawable/captura_de_tela__6_"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="256dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="138dp"
+            android:layout_marginTop="184dp"
+            android:layout_marginEnd="98dp"
+            android:background="#00181414"
+            android:backgroundTint="#000000"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:text="SOLICITAR LIVRO"
+            android:textColor="#000000"
+            android:textColorLink="#000000"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.753"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btEntrar5"
+            android:layout_width="177dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/senhaInput7"
+            app:srcCompat="@drawable/captura_de_tela__4_" />
+
+        <TextView
+            android:id="@+id/textView47"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="252dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="SENHA"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.253"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

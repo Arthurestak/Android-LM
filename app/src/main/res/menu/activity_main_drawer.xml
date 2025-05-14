@@ -23,5 +23,10 @@
             android:id="@+id/nav_assinatura"
             android:icon="@drawable/fa_team_fontawesome_fontawesome_crown_512"
             android:title="@string/menu_assinatura" />
+
+        <item
+            android:id="@+id/nav_formulario"
+            android:icon="@drawable/_8450"
+            android:title="@string/menu_formulario" />
     </group>
 </menu>
