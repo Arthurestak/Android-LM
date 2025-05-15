@@ -13,12 +13,12 @@
         tools:layout_editor_absoluteY="13dp">
 
         <EditText
-            android:id="@+id/emailInput10"
+            android:id="@+id/autorLivroInput"
             style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
             android:layout_width="228dp"
             android:layout_height="51dp"
             android:layout_marginLeft="5px"
-            android:layout_marginTop="428dp"
+            android:layout_marginTop="424dp"
             android:background="#0B0A0A"
             android:backgroundTint="#D9D9D9"
             android:ems="10"
@@ -30,32 +30,64 @@
             android:textColorHighlight="#000000"
             android:textColorLink="#000000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.453"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/btCapaLivro"
+            android:layout_width="144dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="133dp"
+            android:layout_marginTop="510dp"
+            android:layout_marginEnd="134dp"
+            android:src="@drawable/capabotao"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView56"
             android:layout_width="40dp"
             android:layout_height="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="-1dp"
             android:fontFamily="@font/poppins_light"
-            android:text="SENHA"
+            android:gravity="center"
+            android:text="CAPA"
             android:textColor="#000000"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="494dp" />
+            app:layout_constraintTop_toBottomOf="@+id/autorLivroInput"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="124dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginEnd="-1dp"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:text="ARQUIVO LIVRO"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/autorLivroInput"
+            tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/senhaInput8"
+            android:id="@+id/generoLivroInput"
             style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
             android:layout_width="228dp"
             android:layout_height="51dp"
             android:layout_marginStart="102dp"
-            android:layout_marginTop="350dp"
+            android:layout_marginTop="344dp"
             android:layout_marginEnd="100dp"
             android:background="#FB000000"
             android:backgroundTint="#d9d9d9"
@@ -67,53 +99,33 @@
             android:textColorLink="#000000"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/senhaInput7"
-            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
-            android:layout_width="228dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="102dp"
-            android:layout_marginEnd="100dp"
-            android:background="#FB000000"
-            android:backgroundTint="#d9d9d9"
-            android:ems="10"
-            android:inputType="text|textPassword"
-            android:paddingLeft="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="#000000"
-            android:textColorLink="#000000"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="509dp" />
-
         <TextView
             android:id="@+id/textView53"
-            android:layout_width="41dp"
-            android:layout_height="13dp"
+            android:layout_width="123dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="12dp"
             android:background="#FFFFFF"
             android:fontFamily="@font/poppins_light"
-            android:text="E-MAIL"
+            android:gravity="start"
+            android:text="AUTOR DO LIVRO"
             android:textColor="#000000"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.254"
+            app:layout_constraintHorizontal_bias="0.326"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="413dp" />
+            app:layout_constraintTop_toBottomOf="@+id/generoLivroInput"
+            tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/emailInput9"
+            android:id="@+id/nomeLivroInput"
             style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
             android:layout_width="228dp"
             android:layout_height="51dp"
             android:layout_marginLeft="5px"
-            android:layout_marginTop="270dp"
+            android:layout_marginTop="264dp"
             android:background="#0B0A0A"
             android:backgroundTint="#D9D9D9"
             android:ems="10"
@@ -125,22 +137,21 @@
             android:textColorHighlight="#000000"
             android:textColorLink="#000000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.453"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/textView54"
-            android:layout_width="40dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="332dp"
+            android:layout_width="51dp"
+            android:layout_height="14dp"
+            android:layout_marginTop="328dp"
             android:fontFamily="@font/poppins_light"
-            android:text="SENHA"
+            android:text="GÊNERO"
             android:textColor="#000000"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintHorizontal_bias="0.26"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
@@ -176,29 +187,42 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/btEntrar5"
+            android:id="@+id/btEnviarLivro"
             android:layout_width="177dp"
             android:layout_height="57dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="656dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/senhaInput7"
-            app:srcCompat="@drawable/captura_de_tela__4_" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/botaoenviar" />
 
         <TextView
             android:id="@+id/textView47"
-            android:layout_width="40dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="252dp"
+            android:layout_width="133dp"
+            android:layout_height="14dp"
+            android:layout_marginTop="248dp"
             android:fontFamily="@font/poppins_light"
-            android:text="SENHA"
+            android:text="NOME DO LIVRO"
             android:textColor="#000000"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.253"
+            app:layout_constraintHorizontal_bias="0.338"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/btArquivoLivro"
+            android:layout_width="144dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="133dp"
+            android:layout_marginTop="585dp"
+            android:layout_marginEnd="134dp"
+            android:src="@drawable/botaoarquivos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
