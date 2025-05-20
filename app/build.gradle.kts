@@ -6,6 +6,13 @@ android {
     namespace = "com.example.projetolm"
     compileSdk = 35
 
+    packaging {
+        resources {
+            excludes += "META-INF/NOTICE.md"
+            excludes += "META-INF/LICENSE.md"
+        }
+    }
+
     defaultConfig {
         applicationId = "com.example.projetolm"
         minSdk = 24
@@ -33,6 +40,8 @@ android {
         viewBinding = true
     }
 }
+
+
 
 dependencies {
 
