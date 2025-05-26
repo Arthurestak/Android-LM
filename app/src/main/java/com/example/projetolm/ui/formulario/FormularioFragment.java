@@ -16,19 +16,30 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.projetolm.ConexaoMySQL;
+import com.example.projetolm.Login;
+import com.example.projetolm.MainActivity;
+import com.example.projetolm.ProjetoLM;
 import com.example.projetolm.R;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class FormularioFragment extends Fragment {
 
-    private static final int PICK_FILE_REQUEST_CODE = 1;
+    private static final int PICK_FILE_REQUEST_CODE_ARQUIVO = 1;
+    private static final int PICK_FILE_REQUEST_CODE_CAPA = 2;
     ImageView btCapaLivro, btArquivoLivro, btEnviarLivro;
     EditText nomeLivroInput, generoLivroInput, autorLivroInput, capaLivroInput, arquivoLivroInput;
 
@@ -36,18 +47,13 @@ public class FormularioFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
         }
-
-
-
     }
 
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
+        if (resultCode == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
 
             // Obter o nome do arquivo
@@ -56,12 +62,16 @@ public class FormularioFragment extends Fragment {
             // Copiar o arquivo para o armazenamento interno do app
             File savedFile = saveFileToInternalStorage(uri, fileName);
 
-            // Exibir o nome no campo
-            EditText arquivoLivroinput = getView().findViewById(R.id.arquivoLivroInput);
-            arquivoLivroinput.setText(fileName);
+            switch(requestCode){
+                case PICK_FILE_REQUEST_CODE_ARQUIVO:
+                    arquivoLivroInput.setText(fileName);
+                    break;
+                case PICK_FILE_REQUEST_CODE_CAPA:
+                    capaLivroInput.setText(fileName);
+                    break;
+            }
         }
     }
-
     private String getFileName(Context context, Uri uri) {
         String result = null;
         if (uri.getScheme().equals("content")) {
@@ -79,7 +89,6 @@ public class FormularioFragment extends Fragment {
         }
         return result;
     }
-
     private File saveFileToInternalStorage(Uri uri, String fileName) {
         File file = new File(requireContext().getFilesDir(), fileName);
         try (InputStream in = requireContext().getContentResolver().openInputStream(uri);
@@ -96,8 +105,6 @@ public class FormularioFragment extends Fragment {
         }
         return file;
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -112,15 +119,59 @@ public class FormularioFragment extends Fragment {
         generoLivroInput = view.findViewById(R.id.generoLivroInput);
         capaLivroInput = view.findViewById(R.id.capaLivroInput);
         arquivoLivroInput = view.findViewById(R.id.arquivoLivroInput);
+        autorLivroInput = view.findViewById(R.id.autorLivroInput);
 
         // Listener do botão para escolher o arquivo
         btArquivoLivro.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("*/*"); // qualquer tipo de arquivo
-            startActivityForResult(Intent.createChooser(intent, "Selecione um arquivo"), PICK_FILE_REQUEST_CODE);
+            startActivityForResult(Intent.createChooser(intent, "Selecione um arquivo"), PICK_FILE_REQUEST_CODE_ARQUIVO);
         });
-        
+        btCapaLivro.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("*/*"); // qualquer tipo de arquivo
+            startActivityForResult(Intent.createChooser(intent, "Selecione um arquivo"), PICK_FILE_REQUEST_CODE_CAPA);
+        });
 
+        btEnviarLivro.setOnClickListener(v -> {
+            Connection connection = ConexaoMySQL.conectar();
+
+            if (connection == null) {
+                Toast.makeText(getContext(), "Erro na conexão", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                String sql = "INSERT INTO livros_enviados (titulo, categoria, autor, capa_img, livro_file) " +
+                        "VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement stmt = connection.prepareStatement(sql);
+
+                stmt.setString(1, nomeLivroInput.getText().toString());
+                stmt.setString(2, generoLivroInput.getText().toString());
+                stmt.setString(3, autorLivroInput.getText().toString());
+
+                File capaFile = new File(requireContext().getFilesDir(), capaLivroInput.getText().toString());
+                File arquivoFile = new File(requireContext().getFilesDir(), arquivoLivroInput.getText().toString());
+
+                stmt.setBinaryStream(4, new FileInputStream(capaFile), (int) capaFile.length()); // arquivo
+                stmt.setBinaryStream(5, new FileInputStream(arquivoFile), (int) arquivoFile.length()); // arquivo
+
+                int rows = stmt.executeUpdate();
+
+                if (rows > 0) {
+                    Toast.makeText(getContext(), "Livro enviado com sucesso!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Erro ao enviar livro.", Toast.LENGTH_SHORT).show();
+                }
+
+                stmt.close();
+                connection.close();
+
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Erro: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
         return view; // <<<<<<<< RETORNE A VIEW INFLADA
     }
 }
