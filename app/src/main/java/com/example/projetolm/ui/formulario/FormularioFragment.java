@@ -140,11 +140,17 @@ public class FormularioFragment extends Fragment {
                 Toast.makeText(getContext(), "Erro na conexão", Toast.LENGTH_SHORT).show();
                 return;
             }
-
+            ProjetoLM app = (ProjetoLM) getActivity().getApplicationContext();
+            String idPessoaJava = app.getIdPessoaJava();
             try {
-                String sql = "INSERT INTO livros_enviados (titulo, categoria, autor, capa_img, livro_file) " +
+                String sqlAutor = "Insert into autor (pagamento, id_pessoa)" + "Values ('cartao', ?)";
+                PreparedStatement stmtAutor = connection.prepareStatement(sqlAutor);
+                stmtAutor.setString(1,idPessoaJava);
+                String sql = "INSERT INTO livros_enviados (titulo, categoria, autor, capa_img, livro_file,id_autor) " +
                         "VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement stmt = connection.prepareStatement(sql);
+
+
 
                 stmt.setString(1, nomeLivroInput.getText().toString());
                 stmt.setString(2, generoLivroInput.getText().toString());
@@ -156,6 +162,7 @@ public class FormularioFragment extends Fragment {
                 stmt.setBinaryStream(4, new FileInputStream(capaFile), (int) capaFile.length()); // arquivo
                 stmt.setBinaryStream(5, new FileInputStream(arquivoFile), (int) arquivoFile.length()); // arquivo
 
+
                 int rows = stmt.executeUpdate();
 
                 if (rows > 0) {
@@ -164,6 +171,7 @@ public class FormularioFragment extends Fragment {
                     Toast.makeText(getContext(), "Erro ao enviar livro.", Toast.LENGTH_SHORT).show();
                 }
 
+                stmtAutor.close();
                 stmt.close();
                 connection.close();
 
