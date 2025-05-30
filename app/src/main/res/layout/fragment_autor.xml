@@ -3,10 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout3"
+    android:color="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.autor.AutorFragment">
 
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="431dp"
+        android:layout_height="758dp"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/test"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-17dp" />
 
     <ImageView
         android:id="@+id/imageView7"
