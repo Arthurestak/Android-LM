@@ -142,7 +142,6 @@
         android:layout_marginStart="107dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="108dp"
-        android:src="@drawable/captura_de_tela_2025_03_10_143916"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
