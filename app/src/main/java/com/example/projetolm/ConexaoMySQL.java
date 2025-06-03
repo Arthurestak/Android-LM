@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 
 public class ConexaoMySQL {
-    private static final String URL = "jdbc:mysql://biblioteca-db.cf6wmsg6kibo.sa-east-1.rds.amazonaws.com:3306/Biblioteca";
+    private static final String URL = "jdbc:mysql://biblioteca-db.cf6wmsg6kibo.sa-east-1.rds.amazonaws.com:3306/Biblioteca?useSSL=false";
     private static final String USUARIO = "admin"; //super usuario do banco de dados
     private static final String SENHA = "bIbR1073ca";
 

@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Cadastro extends AppCompatActivity {
@@ -57,34 +58,50 @@ public class Cadastro extends AppCompatActivity {
                     return;
                 }
 
+                if(nomeInputCadastro.getText().isEmpty() || emailInputCadastro.getText().isEmpty() || cpfInputCadastro.getText().isEmpty() || senhaInputCadastro.getText().isEmpty()){
+                    Toast.makeText(Cadastro.this, "Um ou mais campos estão vazios!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!senhaInputCadastro.getText().toString().equals(confirmaSenhaInputCadastro.getText().toString())){
+                    Toast.makeText(Cadastro.this, "As senhas não coincidem!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(senhaInputCadastro.getText().toString().length() >= 21){
+                    Toast.makeText(Cadastro.this, "A senha deve conter no máximo 20 caracteres!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(cpfInputCadastro.getText().toString().length() >= 16){
+                    Toast.makeText(Cadastro.this, "O CPF deve conter no máximo 15 caracteres!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 try{
-                    String insertCadastro = "Insert into pessoas (nome,email,cpf,senha) values (?,?,?,?)";
-                    PreparedStatement stmt = connection.prepareStatement(insertCadastro);
+
+                    String insertCadastro = "INSERT INTO pessoas (nome,email,cpf, situacao, senha) VALUES (?,?,?,'A',?)";
+                    PreparedStatement stmt = connection.prepareStatement(insertCadastro, PreparedStatement.RETURN_GENERATED_KEYS);
                     stmt.setString(1, nomeInputCadastro.getText().toString());
                     stmt.setString(2, emailInputCadastro.getText().toString());
                     stmt.setString(3, cpfInputCadastro.getText().toString());
                     stmt.setString(4, senhaInputCadastro.getText().toString());
-
-                    if(nomeInputCadastro.getText().isEmpty() || emailInputCadastro.getText().isEmpty() || cpfInputCadastro.getText().isEmpty() || senhaInputCadastro.getText().isEmpty()){
-                        Toast.makeText(Cadastro.this, "Um ou mais campos estão vazios!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if(!senhaInputCadastro.getText().toString().equals(confirmaSenhaInputCadastro.getText().toString())){
-                        Toast.makeText(Cadastro.this, "As senhas não coincidem!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if(senhaInputCadastro.getText().toString().length() >= 21){
-                        Toast.makeText(Cadastro.this, "A senha deve conter no máximo 20 caracteres!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if(cpfInputCadastro.getText().toString().length() >= 16){
-                        Toast.makeText(Cadastro.this, "O CPF deve conter no máximo 15 caracteres!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
                     stmt.execute();
+
+// 2. Recuperar ID gerado
+                    ResultSet generatedKeys = stmt.getGeneratedKeys();
+                    int idPessoaGerada = -1;
+                    if (generatedKeys.next()) {
+                        idPessoaGerada = generatedKeys.getInt(1);
+                    } else {
+                        Toast.makeText(Cadastro.this, "Erro ao obter o ID da pessoa!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+// 3. Inserir autor com o ID da pessoa
+                    String addAutor = "INSERT INTO autor (pagamento, id_pessoa) VALUES ('Atualizado', ?)";
+                    PreparedStatement stmtAddAutor = connection.prepareStatement(addAutor);
+                    stmtAddAutor.setInt(1, idPessoaGerada);
+                    stmtAddAutor.execute();
+
                     Toast.makeText(Cadastro.this, "Usuário cadastrado! Volte à tela Login!", Toast.LENGTH_SHORT).show();
                     nomeInputCadastro.setText("");
                     emailInputCadastro.setText("");
