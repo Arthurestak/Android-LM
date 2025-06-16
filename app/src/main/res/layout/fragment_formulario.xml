@@ -148,7 +148,7 @@
             android:background="#FB000000"
             android:backgroundTint="#d9d9d9"
             android:ems="10"
-            android:inputType="text|textPassword"
+            android:inputType="text"
             android:paddingLeft="10dp"
             android:textColor="@color/black"
             android:textColorHint="#00000000"
