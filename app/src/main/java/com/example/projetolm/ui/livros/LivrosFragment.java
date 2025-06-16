@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.example.projetolm.R;
 import com.example.projetolm.databinding.FragmentLivrosBinding;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -511,8 +513,69 @@ public class LivrosFragment extends Fragment {
             }
         });
 
+        btPesquisar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try (Connection conn = ConexaoMySQL.conectar()) {
+                    if (conn == null || conn.isClosed()) {
+                        Log.e("Erro", "Conexão não pode ser estabelecida");
+                        return;
+                    }
 
+                    String termoBusca = pesquisarInput.getText().toString().trim();
 
+                    if (!termoBusca.isEmpty()) {
+                        String query = "SELECT id_livro, titulo, categoria, capa_img FROM livros WHERE titulo LIKE ? ORDER BY rand() LIMIT 4";
+                        PreparedStatement stmt = conn.prepareStatement(query);
+                        stmt.setString(1, "%" + termoBusca + "%");
+
+                        ResultSet rs = stmt.executeQuery();
+
+                        int i = 0;
+                        while (rs.next()) {
+                            String id = rs.getString("id_livro");
+                            String titulo = rs.getString("titulo");
+                            String categoria = rs.getString("categoria");
+                            String imagemUrl = rs.getString("capa_img");
+
+                            listaIds[i] = id;
+
+                            switch (i) {
+                                case 0:
+                                    nomeLivro1.setText(titulo);
+                                    descricaoLivro1.setText(categoria);
+                                    Glide.with(requireContext()).load(imagemUrl).into(imgLivro1);
+                                    break;
+                                case 1:
+                                    nomeLivro2.setText(titulo);
+                                    descricaoLivro2.setText(categoria);
+                                    Glide.with(requireContext()).load(imagemUrl).into(imgLivro2);
+                                    break;
+                                case 2:
+                                    nomeLivro3.setText(titulo);
+                                    descricaoLivro3.setText(categoria);
+                                    Glide.with(requireContext()).load(imagemUrl).into(imgLivro3);
+                                    break;
+                                case 3:
+                                    nomeLivro4.setText(titulo);
+                                    descricaoLivro4.setText(categoria);
+                                    Glide.with(requireContext()).load(imagemUrl).into(imgLivro4);
+                                    break;
+                            }
+
+                            i++;
+                        }
+
+                        rs.close();
+                        stmt.close();
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+/*
         btPesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -576,8 +639,7 @@ public class LivrosFragment extends Fragment {
                         }
 
                         nomeLivro2.setText(nome);
-                        descricaoLivro2.setText(descricao);                       /* arthurestak@gmail.com
-                                                                                     Arthur2007-          */
+                        descricaoLivro2.setText(descricao);
                         Glide.with(requireContext())
                                 .load(imagemUrl)
                                 .into(imgLivro2);
@@ -654,8 +716,9 @@ public class LivrosFragment extends Fragment {
                 }
             }
         });
-    return view;
+    return view;*/
 
+        return view;
     }
     public void onDestroyView() {
         super.onDestroyView();
