@@ -454,6 +454,58 @@ public class LivrosFragment extends Fragment {
             throw new RuntimeException(e);
         }
 
+        btRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Connection connection = ConexaoMySQL.conectar();
+
+                String[] listaIds = new String[4];
+                String[] imageUrls = new String[4];
+                String[] titulos = new String[4];
+                String[] categorias = new String[4];
+
+                try {
+                    String query = "SELECT id_livro, titulo, categoria, capa_img FROM livros ORDER BY RAND() LIMIT 4";
+                    PreparedStatement stmt = connection.prepareStatement(query);
+                    ResultSet rs = stmt.executeQuery();
+
+                    int i = 0;
+                    while (rs.next() && i < 4) {
+                        listaIds[i] = rs.getString("id_livro");
+                        titulos[i] = rs.getString("titulo");
+                        categorias[i] = rs.getString("categoria");
+                        imageUrls[i] = rs.getString("capa_img");
+                        i++;
+                    }
+
+                    // Exibição nos elementos da interface
+                    nomeLivro1.setText(titulos[0]);
+                    descricaoLivro1.setText(categorias[0]);
+                    Glide.with(requireContext()).load(imageUrls[0]).into(imgLivro1);
+
+                    nomeLivro2.setText(titulos[1]);
+                    descricaoLivro2.setText(categorias[1]);
+                    Glide.with(requireContext()).load(imageUrls[1]).into(imgLivro2);
+
+                    nomeLivro3.setText(titulos[2]);
+                    descricaoLivro3.setText(categorias[2]);
+                    Glide.with(requireContext()).load(imageUrls[2]).into(imgLivro3);
+
+                    nomeLivro4.setText(titulos[3]);
+                    descricaoLivro4.setText(categorias[3]);
+                    Glide.with(requireContext()).load(imageUrls[3]).into(imgLivro4);
+
+                    rs.close();
+                    stmt.close();
+                    connection.close();
+
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+
 
         nomeLivro1.setOnClickListener(new View.OnClickListener() {
         @Override
