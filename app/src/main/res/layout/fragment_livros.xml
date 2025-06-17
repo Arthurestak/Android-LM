@@ -20,13 +20,12 @@
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="436dp"
-        android:layout_height="856dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="451dp"
+        android:layout_height="930dp"
+        android:layout_marginTop="4dp"
         android:rotation="90"
         android:src="@drawable/captura_de_tela__9_"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

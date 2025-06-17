@@ -2,6 +2,8 @@ package com.example.projetolm.ui.livros;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -411,9 +413,9 @@ public class LivrosFragment extends Fragment {
         Connection connection = ConexaoMySQL.conectar();
 
         String[] listaIds = new String[4];
-        String[] imageUrls = new String[4];
         String[] titulos = new String[4];
         String[] categorias = new String[4];
+        Bitmap[] imagens = new Bitmap[4]; // armazenar imagens convertidas
 
         try {
             String query = "SELECT id_livro, titulo, categoria, capa_img FROM livros ORDER BY RAND() LIMIT 4";
@@ -425,33 +427,42 @@ public class LivrosFragment extends Fragment {
                 listaIds[i] = rs.getString("id_livro");
                 titulos[i] = rs.getString("titulo");
                 categorias[i] = rs.getString("categoria");
-                imageUrls[i] = rs.getString("capa_img");
+
+                // Recupera os bytes da imagem e converte em Bitmap
+                byte[] imageBytes = rs.getBytes("capa_img");
+                if (imageBytes != null) {
+                    imagens[i] = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                } else {
+                    imagens[i] = null; // imagem não encontrada
+                }
+
                 i++;
             }
 
-            // Exibição nos elementos da interface
+            // Exibir na interface
             nomeLivro1.setText(titulos[0]);
             descricaoLivro1.setText(categorias[0]);
-            Glide.with(requireContext()).load(imageUrls[0]).into(imgLivro1);
+            if (imagens[0] != null) imgLivro1.setImageBitmap(imagens[0]);
 
             nomeLivro2.setText(titulos[1]);
             descricaoLivro2.setText(categorias[1]);
-            Glide.with(requireContext()).load(imageUrls[1]).into(imgLivro2);
+            if (imagens[1] != null) imgLivro2.setImageBitmap(imagens[1]);
 
             nomeLivro3.setText(titulos[2]);
             descricaoLivro3.setText(categorias[2]);
-            Glide.with(requireContext()).load(imageUrls[2]).into(imgLivro3);
+            if (imagens[2] != null) imgLivro3.setImageBitmap(imagens[2]);
 
             nomeLivro4.setText(titulos[3]);
             descricaoLivro4.setText(categorias[3]);
-            Glide.with(requireContext()).load(imageUrls[3]).into(imgLivro4);
+            if (imagens[3] != null) imgLivro4.setImageBitmap(imagens[3]);
 
             rs.close();
             stmt.close();
             connection.close();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            Toast.makeText(requireContext(), "Erro ao carregar livros", Toast.LENGTH_SHORT).show();
         }
 
         btRefresh.setOnClickListener(new View.OnClickListener() {
@@ -460,9 +471,9 @@ public class LivrosFragment extends Fragment {
                 Connection connection = ConexaoMySQL.conectar();
 
                 String[] listaIds = new String[4];
-                String[] imageUrls = new String[4];
                 String[] titulos = new String[4];
                 String[] categorias = new String[4];
+                Bitmap[] imagens = new Bitmap[4]; // armazenar imagens convertidas
 
                 try {
                     String query = "SELECT id_livro, titulo, categoria, capa_img FROM livros ORDER BY RAND() LIMIT 4";
@@ -474,33 +485,42 @@ public class LivrosFragment extends Fragment {
                         listaIds[i] = rs.getString("id_livro");
                         titulos[i] = rs.getString("titulo");
                         categorias[i] = rs.getString("categoria");
-                        imageUrls[i] = rs.getString("capa_img");
+
+                        // Recupera os bytes da imagem e converte em Bitmap
+                        byte[] imageBytes = rs.getBytes("capa_img");
+                        if (imageBytes != null) {
+                            imagens[i] = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                        } else {
+                            imagens[i] = null; // imagem não encontrada
+                        }
+
                         i++;
                     }
 
-                    // Exibição nos elementos da interface
+                    // Exibir na interface
                     nomeLivro1.setText(titulos[0]);
                     descricaoLivro1.setText(categorias[0]);
-                    Glide.with(requireContext()).load(imageUrls[0]).into(imgLivro1);
+                    if (imagens[0] != null) imgLivro1.setImageBitmap(imagens[0]);
 
                     nomeLivro2.setText(titulos[1]);
                     descricaoLivro2.setText(categorias[1]);
-                    Glide.with(requireContext()).load(imageUrls[1]).into(imgLivro2);
+                    if (imagens[1] != null) imgLivro2.setImageBitmap(imagens[1]);
 
                     nomeLivro3.setText(titulos[2]);
                     descricaoLivro3.setText(categorias[2]);
-                    Glide.with(requireContext()).load(imageUrls[2]).into(imgLivro3);
+                    if (imagens[2] != null) imgLivro3.setImageBitmap(imagens[2]);
 
                     nomeLivro4.setText(titulos[3]);
                     descricaoLivro4.setText(categorias[3]);
-                    Glide.with(requireContext()).load(imageUrls[3]).into(imgLivro4);
+                    if (imagens[3] != null) imgLivro4.setImageBitmap(imagens[3]);
 
                     rs.close();
                     stmt.close();
                     connection.close();
 
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
+                    Toast.makeText(requireContext(), "Erro ao carregar livros", Toast.LENGTH_SHORT).show();
                 }
             }
         });
