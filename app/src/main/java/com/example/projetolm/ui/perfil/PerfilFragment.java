@@ -11,12 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.projetolm.ConexaoMySQL;
-import com.example.projetolm.Login;
 import com.example.projetolm.ProjetoLM;
 import com.example.projetolm.R;
 import com.example.projetolm.databinding.FragmentPerfilBinding;
@@ -47,7 +45,7 @@ public class PerfilFragment extends Fragment {
 
         // Acessa os elementos da interface usando a view inflada
         ImageView btSalvar = view.findViewById(R.id.btSalvar);
-        ImageView btAssine = view.findViewById(R.id.btAssine);
+        ImageView btAssine = view.findViewById(R.id.btSalvar);
         EditText campoNome = view.findViewById(R.id.campoNome);
         EditText campoEmail = view.findViewById(R.id.campoEmail);
         EditText campoCpf = view.findViewById(R.id.campoCpf);
@@ -97,7 +95,7 @@ public class PerfilFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     Connection connection = ConexaoMySQL.conectar();
-                    String updatePessoa = "update pessoa set nome = ?, email = ?, cpf = ? where id_pessoa = ?";
+                    String updatePessoa = "update pessoas set nome = ?, email = ?, cpf = ? where id_pessoa = ?";
                     PreparedStatement stmt = connection.prepareStatement(updatePessoa);
                     stmt.setString(1, campoNome.getText().toString());
                     stmt.setString(2, campoEmail.getText().toString());
