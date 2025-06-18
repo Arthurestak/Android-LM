@@ -159,7 +159,7 @@ public class FormularioFragment extends Fragment {
                     return; // Não tenta continuar se não encontrou o autor!
                 }
                 String sql = "INSERT INTO livros_enviados (situacao, titulo, categoria, autor, capa_img, livro_file,id_autor) " +
-                        "VALUES ('pendente', ?, ?, ?, ?, ?, ?)";
+                        "VALUES ('Pendente', ?, ?, ?, ?, ?, ?)";
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.setString(1, nomeLivroInput.getText().toString());

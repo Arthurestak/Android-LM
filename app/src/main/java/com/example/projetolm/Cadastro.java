@@ -76,6 +76,7 @@ public class Cadastro extends AppCompatActivity {
                     Toast.makeText(Cadastro.this, "O CPF deve conter no máximo 15 caracteres!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 try{
 
                     String insertCadastro = "INSERT INTO pessoas (nome,email,cpf, situacao, senha) VALUES (?,?,?,'A',?)";
@@ -110,7 +111,9 @@ public class Cadastro extends AppCompatActivity {
                     confirmaSenhaInputCadastro.setText("");
 
                 }catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    Toast.makeText(Cadastro.this, "Já existe um usuário com este cpf cadastrado!", Toast.LENGTH_SHORT).show();
+                    return;
+
                 }
             }
         });
