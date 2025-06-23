@@ -3,6 +3,7 @@ package com.example.projetolm;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,6 +16,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +28,27 @@ public class Cadastro extends AppCompatActivity {
     EditText nomeInputCadastro, emailInputCadastro, cpfInputCadastro, confirmaSenhaInputCadastro, senhaInputCadastro;
     ImageView btCadastrar, btVoltar;
 
+    public static boolean isValidEmail(String email) {
+        return email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] encodedHash = digest.digest(password.getBytes());
+
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : encodedHash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0'); // garantir 2 dígitos
+                hexString.append(hex);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,6 +71,7 @@ public class Cadastro extends AppCompatActivity {
         btVoltar = findViewById(R.id.btVoltar);
 
 
+
         btCadastrar.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
@@ -55,6 +80,11 @@ public class Cadastro extends AppCompatActivity {
 
                 if (connection == null) {
                     Toast.makeText(Cadastro.this, "Erro ao conectar ao banco de dados.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(!isValidEmail(emailInputCadastro.getText().toString())){
+                    Toast.makeText(Cadastro.this, "Formato de email inválido!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -71,6 +101,10 @@ public class Cadastro extends AppCompatActivity {
                     Toast.makeText(Cadastro.this, "A senha deve conter no máximo 20 caracteres!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(senhaInputCadastro.getText().toString().length() <= 7){
+                    Toast.makeText(Cadastro.this, "A senha deve conter no mínimo 8 caracteres!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if(cpfInputCadastro.getText().toString().length() >= 16){
                     Toast.makeText(Cadastro.this, "O CPF deve conter no máximo 15 caracteres!", Toast.LENGTH_SHORT).show();
@@ -84,7 +118,7 @@ public class Cadastro extends AppCompatActivity {
                     stmt.setString(1, nomeInputCadastro.getText().toString());
                     stmt.setString(2, emailInputCadastro.getText().toString());
                     stmt.setString(3, cpfInputCadastro.getText().toString());
-                    stmt.setString(4, senhaInputCadastro.getText().toString());
+                    stmt.setString(4, hashPassword(senhaInputCadastro.getText().toString()));
                     stmt.execute();
 
 // 2. Recuperar ID gerado

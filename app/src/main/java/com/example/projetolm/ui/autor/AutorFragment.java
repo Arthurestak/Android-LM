@@ -22,7 +22,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AutorFragment extends Fragment {
+public class
+AutorFragment extends Fragment {
 
     public AutorFragment() {
         // Construtor vazio obrigatório
@@ -58,40 +59,39 @@ public class AutorFragment extends Fragment {
 
         Connection connection = ConexaoMySQL.conectar();
 
-        // Lista para armazenar URLs únicas
-        ArrayList<String> capasUsadas = new ArrayList<>();
-
         try {
-            // Busca todos os livros do autor aleatoriamente
-            String sql = "SELECT * FROM livros_enviados WHERE id_autor = ? ORDER BY rand()";
+            String sql = "SELECT * FROM livros_enviados WHERE id_autor = (SELECT id_autor FROM autor WHERE id_pessoa = ?)";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, idPessoaJava);
             ResultSet rs = stmt.executeQuery();
 
             int contador = 0;
             while (rs.next() && contador < 3) {
-                String idLivro = rs.getString("id_livro_enviado");
                 String titulo = rs.getString("titulo");
                 String situacao = rs.getString("situacao");
-                String capa = rs.getString("capa_img");
 
-                // Ignora capas já exibidas
-                if (capasUsadas.contains(capa)) continue;
-
-                capasUsadas.add(capa);
+                // Obtém a imagem como byte[]
+                byte[] capaBytes = rs.getBytes("capa_img");
+                if (capaBytes == null) continue;
 
                 if (contador == 0) {
                     nomeLivroAutor1.setText(titulo);
                     situacaoLivro1.setText(situacao);
-                    Glide.with(requireContext()).load(capa).into(imgArquivo1);
+                    Glide.with(requireContext())
+                            .load(capaBytes)
+                            .into(imgArquivo1);
                 } else if (contador == 1) {
                     nomeLivroAutor2.setText(titulo);
                     situacaoLivro2.setText(situacao);
-                    Glide.with(requireContext()).load(capa).into(imgArquivo2);
+                    Glide.with(requireContext())
+                            .load(capaBytes)
+                            .into(imgArquivo2);
                 } else if (contador == 2) {
                     nomeLivroAutor3.setText(titulo);
                     situacaoLivro3.setText(situacao);
-                    Glide.with(requireContext()).load(capa).into(imgArquivo3);
+                    Glide.with(requireContext())
+                            .load(capaBytes)
+                            .into(imgArquivo3);
                 }
 
                 contador++;
@@ -105,44 +105,46 @@ public class AutorFragment extends Fragment {
             e.printStackTrace();
         }
 
+
         btPesquisarAutor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<String> capasUsadasPesquisa = new ArrayList<>(); // reset de capas para pesquisa
+                String termoBusca = pesquisarInputAutor.getText().toString().trim();
 
                 try {
-                    // Abre nova conexão aqui!
-                    Connection conn = ConexaoMySQL.conectar();
-
-                    String sql = "SELECT * FROM livros_enviados WHERE id_autor = ? AND titulo LIKE ?";
-                    PreparedStatement stmt = conn.prepareStatement(sql);
-                    stmt.setString(1, idPessoaJava);
-                    stmt.setString(2, "%" + pesquisarInputAutor.getText().toString() + "%");
+                    String sql = "SELECT * FROM livros_enviados WHERE titulo like = ? and id_autor = (SELECT id_autor FROM autor WHERE id_pessoa = ?)";
+                    PreparedStatement stmt = connection.prepareStatement(sql);
+                    stmt.setString(1, '%'+termoBusca+'%');
+                    stmt.setString(2, idPessoaJava);
                     ResultSet rs = stmt.executeQuery();
 
                     int contador = 0;
                     while (rs.next() && contador < 3) {
                         String titulo = rs.getString("titulo");
                         String situacao = rs.getString("situacao");
-                        String capa = rs.getString("capa_img");
 
-                        // Ignora capas já exibidas
-                        if (capasUsadasPesquisa.contains(capa)) continue;
-
-                        capasUsadasPesquisa.add(capa);
+                        // Obtém a imagem como byte[]
+                        byte[] capaBytes = rs.getBytes("capa_img");
+                        if (capaBytes == null) continue;
 
                         if (contador == 0) {
                             nomeLivroAutor1.setText(titulo);
                             situacaoLivro1.setText(situacao);
-                            Glide.with(requireContext()).load(capa).into(imgArquivo1);
+                            Glide.with(requireContext())
+                                    .load(capaBytes)
+                                    .into(imgArquivo1);
                         } else if (contador == 1) {
                             nomeLivroAutor2.setText(titulo);
                             situacaoLivro2.setText(situacao);
-                            Glide.with(requireContext()).load(capa).into(imgArquivo2);
+                            Glide.with(requireContext())
+                                    .load(capaBytes)
+                                    .into(imgArquivo2);
                         } else if (contador == 2) {
                             nomeLivroAutor3.setText(titulo);
                             situacaoLivro3.setText(situacao);
-                            Glide.with(requireContext()).load(capa).into(imgArquivo3);
+                            Glide.with(requireContext())
+                                    .load(capaBytes)
+                                    .into(imgArquivo3);
                         }
 
                         contador++;
@@ -150,7 +152,7 @@ public class AutorFragment extends Fragment {
 
                     rs.close();
                     stmt.close();
-                    conn.close(); // fecha a conexão corretamente aqui
+                    connection.close();
 
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -161,12 +163,9 @@ public class AutorFragment extends Fragment {
         btRefreshAutor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<String> capasUsadasRefresh = new ArrayList<>();
-
                 try {
-                    Connection conn = ConexaoMySQL.conectar();
-                    String sql = "SELECT * FROM livros_enviados WHERE id_autor = ? ORDER BY rand()";
-                    PreparedStatement stmt = conn.prepareStatement(sql);
+                    String sql = "SELECT * FROM livros_enviados WHERE id_autor = (SELECT id_autor FROM autor WHERE id_pessoa = ?)";
+                    PreparedStatement stmt = connection.prepareStatement(sql);
                     stmt.setString(1, idPessoaJava);
                     ResultSet rs = stmt.executeQuery();
 
@@ -174,24 +173,29 @@ public class AutorFragment extends Fragment {
                     while (rs.next() && contador < 3) {
                         String titulo = rs.getString("titulo");
                         String situacao = rs.getString("situacao");
-                        String capa = rs.getString("capa_img");
 
-                        if (capasUsadasRefresh.contains(capa)) continue;
-
-                        capasUsadasRefresh.add(capa);
+                        // Obtém a imagem como byte[]
+                        byte[] capaBytes = rs.getBytes("capa_img");
+                        if (capaBytes == null) continue;
 
                         if (contador == 0) {
                             nomeLivroAutor1.setText(titulo);
                             situacaoLivro1.setText(situacao);
-                            Glide.with(requireContext()).load(capa).into(imgArquivo1);
+                            Glide.with(requireContext())
+                                    .load(capaBytes)
+                                    .into(imgArquivo1);
                         } else if (contador == 1) {
                             nomeLivroAutor2.setText(titulo);
                             situacaoLivro2.setText(situacao);
-                            Glide.with(requireContext()).load(capa).into(imgArquivo2);
+                            Glide.with(requireContext())
+                                    .load(capaBytes)
+                                    .into(imgArquivo2);
                         } else if (contador == 2) {
                             nomeLivroAutor3.setText(titulo);
                             situacaoLivro3.setText(situacao);
-                            Glide.with(requireContext()).load(capa).into(imgArquivo3);
+                            Glide.with(requireContext())
+                                    .load(capaBytes)
+                                    .into(imgArquivo3);
                         }
 
                         contador++;
@@ -199,7 +203,7 @@ public class AutorFragment extends Fragment {
 
                     rs.close();
                     stmt.close();
-                    conn.close();
+                    connection.close();
 
                 } catch (SQLException e) {
                     e.printStackTrace();

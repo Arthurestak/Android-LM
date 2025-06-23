@@ -158,8 +158,8 @@ public class FormularioFragment extends Fragment {
                     Toast.makeText(getContext(), "Autor não encontrado no banco de dados.", Toast.LENGTH_LONG).show();
                     return; // Não tenta continuar se não encontrou o autor!
                 }
-                String sql = "INSERT INTO livros_enviados (situacao, titulo, categoria, autor, capa_img, livro_file,id_autor) " +
-                        "VALUES ('Pendente', ?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO livros_enviados (situacao, titulo, categoria, capa_img, livro_file,id_autor) " +
+                        "VALUES ('Pendente', ?, ?, ?, ?, ?)";
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.setString(1, nomeLivroInput.getText().toString());
@@ -186,6 +186,12 @@ public class FormularioFragment extends Fragment {
                 stmtIdAutor.close();
                 stmt.close();
                 connection.close();
+
+                nomeLivroInput.setText("");
+                generoLivroInput.setText("");
+                capaLivroInput.setText("");
+                arquivoLivroInput.setText("");
+                autorLivroInput.setText("");
 
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
