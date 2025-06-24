@@ -89,7 +89,7 @@
         android:layout_marginStart="139dp"
         android:layout_marginTop="72dp"
         android:layout_marginEnd="136dp"
-        android:text=" 55R$ p/mês"
+        android:text="11R$ p/mês"
         android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="24sp"

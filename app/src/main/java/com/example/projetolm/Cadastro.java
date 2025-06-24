@@ -132,12 +132,14 @@ public class Cadastro extends AppCompatActivity {
                     }
 
 // 3. Inserir autor com o ID da pessoa
-                    String addAutor = "INSERT INTO autor (pagamento, id_pessoa) VALUES ('Atualizado', ?)";
+                    String addAutor = "INSERT INTO assinante (pagamento, id_pessoa) VALUES ('Atualizado', ?)";
                     PreparedStatement stmtAddAutor = connection.prepareStatement(addAutor);
                     stmtAddAutor.setInt(1, idPessoaGerada);
                     stmtAddAutor.execute();
 
-                    Toast.makeText(Cadastro.this, "Usuário cadastrado! Volte à tela Login!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Cadastro.this, "Usuário cadastrado!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Cadastro.this,Login.class);
+                    startActivity(intent);
                     nomeInputCadastro.setText("");
                     emailInputCadastro.setText("");
                     cpfInputCadastro.setText("");

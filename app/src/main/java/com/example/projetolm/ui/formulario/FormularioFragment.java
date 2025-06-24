@@ -145,21 +145,21 @@ public class FormularioFragment extends Fragment {
             try {
 
 
-                String idAutorSql = "select id_autor from autor a inner join pessoas p on a.id_pessoa = p.id_pessoa where a.id_pessoa = ?";
+                String idAutorSql = "select id_assinante from assinante a inner join pessoas p on a.id_pessoa = p.id_pessoa where a.id_pessoa = ?";
                 PreparedStatement stmtIdAutor = connection.prepareStatement(idAutorSql);
                 stmtIdAutor.setString(1, idPessoaJava);
                 ResultSet rsIdAutor = stmtIdAutor.executeQuery();
 
 
-                int idAutor = -1;
+                int idAssinante = -1;
                 if (rsIdAutor.next()) {
-                    idAutor = rsIdAutor.getInt("id_autor");
+                    idAssinante = rsIdAutor.getInt("id_assinante");
                 } else {
                     Toast.makeText(getContext(), "Autor não encontrado no banco de dados.", Toast.LENGTH_LONG).show();
                     return; // Não tenta continuar se não encontrou o autor!
                 }
-                String sql = "INSERT INTO livros_enviados (situacao, titulo, categoria, capa_img, livro_file,id_autor) " +
-                        "VALUES ('Pendente', ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO livros_enviados (situacao, titulo, categoria, autor, capa_img, livro_file,id_assinante) " +
+                        "VALUES ('Pendente', ?, ?, ?, ?, ?, ?)";
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.setString(1, nomeLivroInput.getText().toString());
@@ -172,7 +172,7 @@ public class FormularioFragment extends Fragment {
                 stmt.setBinaryStream(4, new FileInputStream(capaFile), (int) capaFile.length()); // arquivo
                 stmt.setBinaryStream(5, new FileInputStream(arquivoFile), (int) arquivoFile.length()); // arquivo
 
-                stmt.setInt(6, idAutor);
+                stmt.setInt(6, idAssinante);
 
 
                 int rows = stmt.executeUpdate();

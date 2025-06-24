@@ -1,5 +1,7 @@
 package com.example.projetolm.ui.autor;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -60,6 +62,48 @@ AutorFragment extends Fragment {
         Connection connection = ConexaoMySQL.conectar();
 
         try {
+            nomeLivroAutor1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                    startActivity(intent);
+                }
+            });
+            nomeLivroAutor2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                    startActivity(intent);
+                }
+            });
+            nomeLivroAutor3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                    startActivity(intent);
+                }
+            });
+            situacaoLivro1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                    startActivity(intent);
+                }
+            });
+            situacaoLivro2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                    startActivity(intent);
+                }
+            });
+            situacaoLivro3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                    startActivity(intent);
+                }
+            });
             String sql = "SELECT * FROM livros_enviados WHERE id_autor = (SELECT id_autor FROM autor WHERE id_pessoa = ?)";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, idPessoaJava);
@@ -112,14 +156,16 @@ AutorFragment extends Fragment {
                 String termoBusca = pesquisarInputAutor.getText().toString().trim();
 
                 try {
-                    String sql = "SELECT * FROM livros_enviados WHERE titulo like = ? and id_autor = (SELECT id_autor FROM autor WHERE id_pessoa = ?)";
+                    String sql = "SELECT * FROM livros_enviados WHERE titulo like = ? and id_assinante = (SELECT id_assinante FROM assinante WHERE id_pessoa = ?)";
                     PreparedStatement stmt = connection.prepareStatement(sql);
                     stmt.setString(1, '%'+termoBusca+'%');
                     stmt.setString(2, idPessoaJava);
                     ResultSet rs = stmt.executeQuery();
 
                     int contador = 0;
+
                     while (rs.next() && contador < 3) {
+
                         String titulo = rs.getString("titulo");
                         String situacao = rs.getString("situacao");
 
@@ -127,6 +173,14 @@ AutorFragment extends Fragment {
                         byte[] capaBytes = rs.getBytes("capa_img");
                         if (capaBytes == null) continue;
 
+                        if(String.valueOf(titulo).isEmpty()){
+                            nomeLivroAutor1.setText("");
+                            nomeLivroAutor2.setText("");
+                            nomeLivroAutor3.setText("");
+                            situacaoLivro1.setText("");
+                            situacaoLivro2.setText("");
+                            situacaoLivro3.setText("");
+                        }
                         if (contador == 0) {
                             nomeLivroAutor1.setText(titulo);
                             situacaoLivro1.setText(situacao);
@@ -164,7 +218,7 @@ AutorFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    String sql = "SELECT * FROM livros_enviados WHERE id_autor = (SELECT id_autor FROM autor WHERE id_pessoa = ?)";
+                    String sql = "SELECT * FROM livros_enviados WHERE id_assinante = (SELECT id_assinante FROM assinante WHERE id_pessoa = ?)";
                     PreparedStatement stmt = connection.prepareStatement(sql);
                     stmt.setString(1, idPessoaJava);
                     ResultSet rs = stmt.executeQuery();
