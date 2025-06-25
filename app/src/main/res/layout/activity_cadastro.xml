@@ -281,6 +281,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="171dp"
         android:text="© 2025 - LeM"
+        android:textColor="#000000"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

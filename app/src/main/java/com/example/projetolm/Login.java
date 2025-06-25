@@ -1,6 +1,9 @@
 package com.example.projetolm;
+import static com.example.projetolm.Cadastro.hashPassword;
 import static java.security.AccessController.getContext;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -38,7 +41,24 @@ public class Login extends AppCompatActivity{
     EditText senhaInput;
     ImageView btEntrar;
     TextView btRecuperarSenhaLogin, btCadastreSeLogin;
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] encodedHash = digest.digest(password.getBytes());
 
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : encodedHash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0'); // garantir 2 dígitos
+                hexString.append(hex);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -75,7 +95,6 @@ btCadastreSeLogin.setOnClickListener(new View.OnClickListener() {
         finish();
     }
 });
-
 btEntrar.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -86,22 +105,26 @@ btEntrar.setOnClickListener(new View.OnClickListener() {
             return;
         }
         try {
-            String selectLogin = "select * from pessoas where email = ? and senha = ?";
+            String selectLogin = "select * from pessoas where email = ?";
+            String senhaDigitada = senhaInput.getText().toString();
+            String hashDigitado = hashPassword(senhaDigitada);
             PreparedStatement stmt = connection.prepareStatement(selectLogin);
             stmt.setString(1, emailInput.getText().toString());
-            stmt.setString(2, senhaInput.getText().toString());
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                ProjetoLM app = (ProjetoLM) getApplicationContext();
+                if (hashDigitado != null && hashDigitado.equals(rs.getString("senha"))) {
+                    ProjetoLM app = (ProjetoLM) getApplicationContext();
                     app.setIdPessoaJava(rs.getString("id_pessoa"));
-                Intent intent = new Intent(Login.this,MainActivity.class);
-                startActivity(intent);
-                finish();
-
-            }else{
-                Toast.makeText(Login.this, "Email ou Senha incorretos!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Login.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else{Toast.makeText(Login.this, "Email ou Senha incorretos!", Toast.LENGTH_SHORT).show();}
             }
+            else{Toast.makeText(Login.this, "Email ou Senha incorretos!", Toast.LENGTH_SHORT).show();}
+
+
 
 
             rs.close();

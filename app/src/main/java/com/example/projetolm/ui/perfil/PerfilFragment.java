@@ -9,12 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.projetolm.ConexaoMySQL;
+import com.example.projetolm.Login;
+import com.example.projetolm.MainActivity;
 import com.example.projetolm.ProjetoLM;
 import com.example.projetolm.R;
 import com.example.projetolm.databinding.FragmentPerfilBinding;
@@ -29,6 +32,7 @@ public class PerfilFragment extends Fragment {
 
     ImageView btSalvar, btAssine;
     EditText campoNome, campoEmail, campoCpf;
+    TextView btSairConta;
 
     private FragmentPerfilBinding binding;
 
@@ -49,6 +53,7 @@ public class PerfilFragment extends Fragment {
         EditText campoNome = view.findViewById(R.id.campoNome);
         EditText campoEmail = view.findViewById(R.id.campoEmail);
         EditText campoCpf = view.findViewById(R.id.campoCpf);
+        TextView btSairConta = view.findViewById(R.id.btSairConta);
 
         // Garante que o botão foi encontrado
         if (btSalvar != null) {
@@ -81,7 +86,13 @@ public class PerfilFragment extends Fragment {
         }
 
 
-
+        btSairConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Login.class);
+                startActivity(intent);
+            }
+        });
 
         btAssine.setOnClickListener(new View.OnClickListener() {
             @Override

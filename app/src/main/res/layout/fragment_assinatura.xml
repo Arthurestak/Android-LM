@@ -114,6 +114,8 @@
         android:layout_width="276dp"
         android:layout_height="45dp"
         android:layout_marginTop="40dp"
+        android:clickable="false"
+        android:contextClickable="false"
         android:ems="10"
         android:inputType="text"
         android:textColor="#020202"

@@ -249,50 +249,67 @@ public class LivrosFragment extends Fragment {
         btPesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try (Connection conn = ConexaoMySQL.conectar()) {
-                    if (conn == null || conn.isClosed()) {
-                        Log.e("Erro", "Conexão não pode ser estabelecida");
-                        return;
-                    }
+                // 1. Limpa os campos
+                nomeLivro1.setText("");
+                descricaoLivro1.setText("");
+                imgLivro1.setImageDrawable(null); // limpa imagem
 
-                    String termoBusca = pesquisarInput.getText().toString().trim();
+                nomeLivro2.setText("");
+                descricaoLivro2.setText("");
+                imgLivro2.setImageDrawable(null);
 
-                    if (!termoBusca.isEmpty()) {
-                        String query = "SELECT id_livro, titulo, categoria, capa_img FROM livros WHERE titulo LIKE ? ORDER BY rand() LIMIT 4";
-                        PreparedStatement stmt = conn.prepareStatement(query);
-                        stmt.setString(1, "%" + termoBusca + "%");
+                nomeLivro3.setText("");
+                descricaoLivro3.setText("");
+                imgLivro3.setImageDrawable(null);
 
+                nomeLivro4.setText("");
+                descricaoLivro4.setText("");
+                imgLivro4.setImageDrawable(null);
+
+                // 2. Obtém o termo de busca
+                String termoBusca = pesquisarInput.getText().toString().trim();
+
+                if (!termoBusca.isEmpty()) {
+                    Connection connection = ConexaoMySQL.conectar();
+
+                    try {
+                        String query = "SELECT * FROM livros WHERE titulo LIKE ? ORDER BY RAND() LIMIT 4";
+                        PreparedStatement stmt = connection.prepareStatement(query);
+                        stmt.setString(1, "%" + termoBusca + "%"); // ✅ Aqui corrigimos
                         ResultSet rs = stmt.executeQuery();
 
                         int i = 0;
-                        while (rs.next()) {
-                            String id = rs.getString("id_livro");
+                        while (rs.next() && i < 4) {
                             String titulo = rs.getString("titulo");
                             String categoria = rs.getString("categoria");
-                            String imagemUrl = rs.getString("capa_img");
+                            byte[] imageBytes = rs.getBytes("capa_img");
 
-                            listaIds[i] = id;
+                            Bitmap imagemBitmap = null;
+                            if (imageBytes != null) {
+                                imagemBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                            }
 
+                            // Exibir nos campos corretos
                             switch (i) {
                                 case 0:
                                     nomeLivro1.setText(titulo);
                                     descricaoLivro1.setText(categoria);
-                                    Glide.with(requireContext()).load(imagemUrl).into(imgLivro1);
+                                    if (imagemBitmap != null) imgLivro1.setImageBitmap(imagemBitmap);
                                     break;
                                 case 1:
                                     nomeLivro2.setText(titulo);
                                     descricaoLivro2.setText(categoria);
-                                    Glide.with(requireContext()).load(imagemUrl).into(imgLivro2);
+                                    if (imagemBitmap != null) imgLivro2.setImageBitmap(imagemBitmap);
                                     break;
                                 case 2:
                                     nomeLivro3.setText(titulo);
                                     descricaoLivro3.setText(categoria);
-                                    Glide.with(requireContext()).load(imagemUrl).into(imgLivro3);
+                                    if (imagemBitmap != null) imgLivro3.setImageBitmap(imagemBitmap);
                                     break;
                                 case 3:
                                     nomeLivro4.setText(titulo);
                                     descricaoLivro4.setText(categoria);
-                                    Glide.with(requireContext()).load(imagemUrl).into(imgLivro4);
+                                    if (imagemBitmap != null) imgLivro4.setImageBitmap(imagemBitmap);
                                     break;
                             }
 
@@ -301,14 +318,17 @@ public class LivrosFragment extends Fragment {
 
                         rs.close();
                         stmt.close();
-                    }
+                        connection.close();
 
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        Toast.makeText(requireContext(), "Erro ao carregar livros", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Digite um título para buscar.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
         return view;
     }
     public void onDestroyView() {

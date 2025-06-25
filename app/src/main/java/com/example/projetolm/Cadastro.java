@@ -121,7 +121,6 @@ public class Cadastro extends AppCompatActivity {
                     stmt.setString(4, hashPassword(senhaInputCadastro.getText().toString()));
                     stmt.execute();
 
-// 2. Recuperar ID gerado
                     ResultSet generatedKeys = stmt.getGeneratedKeys();
                     int idPessoaGerada = -1;
                     if (generatedKeys.next()) {
@@ -131,7 +130,6 @@ public class Cadastro extends AppCompatActivity {
                         return;
                     }
 
-// 3. Inserir autor com o ID da pessoa
                     String addAutor = "INSERT INTO assinante (pagamento, id_pessoa) VALUES ('Atualizado', ?)";
                     PreparedStatement stmtAddAutor = connection.prepareStatement(addAutor);
                     stmtAddAutor.setInt(1, idPessoaGerada);
