@@ -79,6 +79,8 @@ public class Login extends AppCompatActivity{
     btRecuperarSenhaLogin = findViewById(R.id.btRecuperarSenhaLogin);
     btCadastreSeLogin = findViewById(R.id.btCadastreSeLogin);
 
+    /* ARRUMAR OS REDIRECIONAMENTOS DOS LINKS*/
+
 btRecuperarSenhaLogin.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -113,7 +115,7 @@ btEntrar.setOnClickListener(new View.OnClickListener() {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                if (hashDigitado != null && hashDigitado.equals(rs.getString("senha"))) {
+                if (hashDigitado != null && hashDigitado.equals(rs.getString("senha_hash"))) {
                     ProjetoLM app = (ProjetoLM) getApplicationContext();
                     app.setIdPessoaJava(rs.getString("id_pessoa"));
                     Intent intent = new Intent(Login.this,MainActivity.class);

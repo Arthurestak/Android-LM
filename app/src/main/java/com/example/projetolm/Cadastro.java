@@ -113,7 +113,7 @@ public class Cadastro extends AppCompatActivity {
 
                 try{
 
-                    String insertCadastro = "INSERT INTO pessoas (nome,email,cpf, situacao, senha) VALUES (?,?,?,'A',?)";
+                    String insertCadastro = "INSERT INTO pessoas (nome,email,cpf, situacao, senha_hash) VALUES (?,?,?,'A',?)";
                     PreparedStatement stmt = connection.prepareStatement(insertCadastro, PreparedStatement.RETURN_GENERATED_KEYS);
                     stmt.setString(1, nomeInputCadastro.getText().toString());
                     stmt.setString(2, emailInputCadastro.getText().toString());

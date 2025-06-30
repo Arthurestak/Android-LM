@@ -111,7 +111,7 @@
         android:layout_width="59dp"
         android:layout_height="79dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textLivros"
         tools:src="@tools:sample/avatars" />
@@ -150,31 +150,14 @@
         tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/descricaoLivro1"
-        android:layout_width="115dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="72dp"
-        android:fontFamily="@font/poppins_light"
-        android:hint="Descrição livro"
-        android:textAlignment="textEnd"
-        android:textColor="#F34D4D4D"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.647"
-        app:layout_constraintStart_toEndOf="@+id/imgLivro1"
-        app:layout_constraintTop_toBottomOf="@+id/textLivros" />
-
-    <TextView
         android:id="@+id/descricaoLivro4"
         android:layout_width="115dp"
         android:layout_height="31dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="72dp"
         android:fontFamily="@font/poppins_light"
-        android:hint="Descrição livro"
-        android:textAlignment="textEnd"
+        android:hint="Não encontrado!"
+        android:textAlignment="center"
         android:textColor="#F34D4D4D"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -187,11 +170,11 @@
         android:id="@+id/descricaoLivro3"
         android:layout_width="115dp"
         android:layout_height="31dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="72dp"
         android:fontFamily="@font/poppins_light"
-        android:hint="Descrição livro"
-        android:textAlignment="textEnd"
+        android:hint="Não encontrado!"
+        android:textAlignment="center"
         android:textColor="#F34D4D4D"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -208,24 +191,9 @@
         android:src="@drawable/captura_de_tela_2025_03_11_162658"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
 
-    <TextView
-        android:id="@+id/descricaoLivro2"
-        android:layout_width="115dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="72dp"
-        android:fontFamily="@font/poppins_light"
-        android:hint="Descrição livro"
-        android:textAlignment="textEnd"
-        android:textColor="#F34D4D4D"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.647"
-        app:layout_constraintStart_toEndOf="@+id/imgLivro2"
-        app:layout_constraintTop_toBottomOf="@+id/descricaoLivro1" /><![CDATA[
+
 
     app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="@+id/pesquisarInput"
@@ -246,7 +214,39 @@
 
 
 
+
+
     ]]>
+
+    <TextView
+        android:id="@+id/descricaoLivro2"
+        android:layout_width="115dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="72dp"
+        android:fontFamily="@font/poppins_light"
+        android:hint="Não encontrado!"
+        android:textAlignment="center"
+        android:textColor="#F34D4D4D"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toEndOf="@+id/imgLivro2"
+        app:layout_constraintTop_toBottomOf="@+id/descricaoLivro1" />
+
+    <TextView
+        android:id="@+id/nomeLivro2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.596"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descricaoLivro1" />
 
     <ImageView
         android:id="@+id/btPesquisar"
@@ -262,41 +262,42 @@
         android:id="@+id/nomeLivro1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="72dp"
         android:fontFamily="@font/poppins_semibold"
-        android:hint="Nome Livro"
-        android:textAlignment="textEnd"
+        android:textAlignment="textStart"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintHorizontal_bias="0.596"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textLivros" />
 
     <TextView
-        android:id="@+id/nomeLivro2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:hint="Nome Livro"
-        android:textAlignment="textEnd"
-        android:textColor="#000000"
+        android:id="@+id/descricaoLivro1"
+        android:layout_width="115dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="72dp"
+        android:fontFamily="@font/poppins_light"
+        android:hint="Não encontrado!"
+        android:textAlignment="center"
+        android:textColor="#F34D4D4D"
+        android:textSize="12sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.65"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descricaoLivro1" />
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toEndOf="@+id/imgLivro1"
+        app:layout_constraintTop_toBottomOf="@+id/textLivros" />
 
     <TextView
         android:id="@+id/nomeLivro3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/poppins_semibold"
-        android:hint="Nome Livro"
-        android:textAlignment="textEnd"
+        android:textAlignment="textStart"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintHorizontal_bias="0.596"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descricaoLivro2" />
 
@@ -304,13 +305,12 @@
         android:id="@+id/nomeLivro4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/poppins_semibold"
-        android:hint="Nome Livro"
-        android:textAlignment="textEnd"
+        android:textAlignment="textStart"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintHorizontal_bias="0.596"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descricaoLivro3" />
 

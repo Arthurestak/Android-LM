@@ -147,6 +147,7 @@ public class LivrosFragment extends Fragment {
                         titulos[i] = rs.getString("titulo");
                         categorias[i] = rs.getString("categoria");
 
+
                         // Recupera os bytes da imagem e converte em Bitmap
                         byte[] imageBytes = rs.getBytes("capa_img");
                         if (imageBytes != null) {
@@ -157,6 +158,64 @@ public class LivrosFragment extends Fragment {
 
                         i++;
                     }
+
+                    nomeLivro1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[0]));
+                            startActivity(intent);
+                        }
+                    });
+                    nomeLivro2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[1]));
+                            startActivity(intent);
+                        }
+                    });
+                    nomeLivro3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[2]));
+                            startActivity(intent);
+                        }
+                    });
+                    nomeLivro4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[3]));
+                            startActivity(intent);
+                        }
+                    });
+
+                    descricaoLivro1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[0]));
+                            startActivity(intent);
+                        }
+                    });
+                    descricaoLivro2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[1]));
+                            startActivity(intent);
+                        }
+                    });
+                    descricaoLivro3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[2]));
+                            startActivity(intent);
+                        }
+                    });
+                    descricaoLivro4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[3]));
+                            startActivity(intent);
+                        }
+                    });
 
                     // Exibir na interface
                     nomeLivro1.setText(titulos[0]);
@@ -191,28 +250,28 @@ public class LivrosFragment extends Fragment {
         nomeLivro1.setOnClickListener(new View.OnClickListener() {
         @Override
             public void onClick(View view) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[0]));
             startActivity(intent);
             }
         });
         nomeLivro2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[1]));
                 startActivity(intent);
             }
         });
         nomeLivro3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[2]));
                 startActivity(intent);
                 }
             });
         nomeLivro4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+               Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[3]));
                startActivity(intent);
             }
         });
@@ -220,28 +279,28 @@ public class LivrosFragment extends Fragment {
         descricaoLivro1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[0]));
                 startActivity(intent);
             }
         });
         descricaoLivro2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[1]));
                 startActivity(intent);
             }
         });
         descricaoLivro3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[2]));
                 startActivity(intent);
             }
         });
         descricaoLivro4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[3]));
                 startActivity(intent);
             }
         });

@@ -1,6 +1,8 @@
 package com.example.projetolm.ui.autor;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.projetolm.ConexaoMySQL;
@@ -143,7 +146,7 @@ AutorFragment extends Fragment {
 
             rs.close();
             stmt.close();
-            connection.close();
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -153,63 +156,74 @@ AutorFragment extends Fragment {
         btPesquisarAutor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 1. Limpa os campos
+                nomeLivroAutor1.setText("");
+                situacaoLivro1.setText("");
+                imgArquivo1.setImageDrawable(null); // limpa imagem
+
+                nomeLivroAutor2.setText("");
+                situacaoLivro2.setText("");
+                imgArquivo2.setImageDrawable(null);
+
+                nomeLivroAutor3.setText("");
+                situacaoLivro3.setText("");
+                imgArquivo3.setImageDrawable(null);
+
+                // 2. Obtém o termo de busca
                 String termoBusca = pesquisarInputAutor.getText().toString().trim();
 
-                try {
-                    String sql = "SELECT * FROM livros_enviados WHERE titulo like = ? and id_assinante = (SELECT id_assinante FROM assinante WHERE id_pessoa = ?)";
-                    PreparedStatement stmt = connection.prepareStatement(sql);
-                    stmt.setString(1, '%'+termoBusca+'%');
-                    stmt.setString(2, idPessoaJava);
-                    ResultSet rs = stmt.executeQuery();
+                if (!termoBusca.isEmpty()) {
+                    Connection connection = ConexaoMySQL.conectar();
 
-                    int contador = 0;
+                    try {
+                        String query = "SELECT * FROM livros_enviados WHERE titulo like ? and id_autor = (SELECT id_autor FROM autor WHERE id_pessoa = ?)";
+                        PreparedStatement stmt = connection.prepareStatement(query);
+                        stmt.setString(1, "%" + termoBusca + "%"); // ✅ Aqui corrigimos
+                        stmt.setString(2, idPessoaJava);
+                        ResultSet rs = stmt.executeQuery();
 
-                    while (rs.next() && contador < 3) {
+                        int contador = 0;
+                        while (rs.next() && contador < 3) {
+                            String titulo = rs.getString("titulo");
+                            String situacao = rs.getString("situacao");
 
-                        String titulo = rs.getString("titulo");
-                        String situacao = rs.getString("situacao");
+                            // Obtém a imagem como byte[]
+                            byte[] capaBytes = rs.getBytes("capa_img");
+                            if (capaBytes == null) continue;
 
-                        // Obtém a imagem como byte[]
-                        byte[] capaBytes = rs.getBytes("capa_img");
-                        if (capaBytes == null) continue;
+                            if (contador == 0) {
+                                nomeLivroAutor1.setText(titulo);
+                                situacaoLivro1.setText(situacao);
+                                Glide.with(requireContext())
+                                        .load(capaBytes)
+                                        .into(imgArquivo1);
+                            } else if (contador == 1) {
+                                nomeLivroAutor2.setText(titulo);
+                                situacaoLivro2.setText(situacao);
+                                Glide.with(requireContext())
+                                        .load(capaBytes)
+                                        .into(imgArquivo2);
+                            } else if (contador == 2) {
+                                nomeLivroAutor3.setText(titulo);
+                                situacaoLivro3.setText(situacao);
+                                Glide.with(requireContext())
+                                        .load(capaBytes)
+                                        .into(imgArquivo3);
+                            }
 
-                        if(String.valueOf(titulo).isEmpty()){
-                            nomeLivroAutor1.setText("");
-                            nomeLivroAutor2.setText("");
-                            nomeLivroAutor3.setText("");
-                            situacaoLivro1.setText("");
-                            situacaoLivro2.setText("");
-                            situacaoLivro3.setText("");
-                        }
-                        if (contador == 0) {
-                            nomeLivroAutor1.setText(titulo);
-                            situacaoLivro1.setText(situacao);
-                            Glide.with(requireContext())
-                                    .load(capaBytes)
-                                    .into(imgArquivo1);
-                        } else if (contador == 1) {
-                            nomeLivroAutor2.setText(titulo);
-                            situacaoLivro2.setText(situacao);
-                            Glide.with(requireContext())
-                                    .load(capaBytes)
-                                    .into(imgArquivo2);
-                        } else if (contador == 2) {
-                            nomeLivroAutor3.setText(titulo);
-                            situacaoLivro3.setText(situacao);
-                            Glide.with(requireContext())
-                                    .load(capaBytes)
-                                    .into(imgArquivo3);
+                            contador++;
                         }
 
-                        contador++;
+                        rs.close();
+                        stmt.close();
+
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        Toast.makeText(requireContext(), "Erro ao carregar livros", Toast.LENGTH_SHORT).show();
                     }
-
-                    rs.close();
-                    stmt.close();
-                    connection.close();
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                } else {
+                    Toast.makeText(requireContext(), "Digite um título para buscar.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -218,7 +232,7 @@ AutorFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    String sql = "SELECT * FROM livros_enviados WHERE id_assinante = (SELECT id_assinante FROM assinante WHERE id_pessoa = ?)";
+                    String sql = "SELECT * FROM livros_enviados WHERE id_autor = (SELECT id_autor FROM autor WHERE id_pessoa = ?)";
                     PreparedStatement stmt = connection.prepareStatement(sql);
                     stmt.setString(1, idPessoaJava);
                     ResultSet rs = stmt.executeQuery();
@@ -257,7 +271,7 @@ AutorFragment extends Fragment {
 
                     rs.close();
                     stmt.close();
-                    connection.close();
+
 
                 } catch (SQLException e) {
                     e.printStackTrace();

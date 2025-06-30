@@ -40,8 +40,9 @@ public class FormularioFragment extends Fragment {
 
     private static final int PICK_FILE_REQUEST_CODE_ARQUIVO = 1;
     private static final int PICK_FILE_REQUEST_CODE_CAPA = 2;
-    ImageView btCapaLivro, btArquivoLivro, btEnviarLivro;
-    EditText nomeLivroInput, generoLivroInput, autorLivroInput, capaLivroInput, arquivoLivroInput;
+    private static final int PICK_FILE_REQUEST_CODE_DESCRICAO = 3;
+    ImageView btCapaLivro, btArquivoLivro, btEnviarLivro, btDescricaoLivro;
+    EditText nomeLivroInput, generoLivroInput, autorLivroInput, capaLivroInput, arquivoLivroInput, descricaoLivroInput;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,9 @@ public class FormularioFragment extends Fragment {
                     break;
                 case PICK_FILE_REQUEST_CODE_CAPA:
                     capaLivroInput.setText(fileName);
+                    break;
+                case PICK_FILE_REQUEST_CODE_DESCRICAO:
+                    descricaoLivroInput.setText(fileName);
                     break;
             }
         }
@@ -113,6 +117,7 @@ public class FormularioFragment extends Fragment {
 
         // Agora sim é seguro buscar os elementos dentro da View inflada
         btCapaLivro = view.findViewById(R.id.btCapaLivro);
+        btDescricaoLivro = view.findViewById(R.id.btDescricaoLivro);
         btArquivoLivro = view.findViewById(R.id.btArquivoLivro);
         btEnviarLivro = view.findViewById(R.id.btEnviarLivro);
         nomeLivroInput = view.findViewById(R.id.nomeLivroInput);
@@ -120,17 +125,25 @@ public class FormularioFragment extends Fragment {
         capaLivroInput = view.findViewById(R.id.capaLivroInput);
         arquivoLivroInput = view.findViewById(R.id.arquivoLivroInput);
         autorLivroInput = view.findViewById(R.id.autorLivroInput);
+        descricaoLivroInput = view.findViewById(R.id.descricaoLivroInput);
 
         // Listener do botão para escolher o arquivo
         btArquivoLivro.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("*/*"); // qualquer tipo de arquivo
-            startActivityForResult(Intent.createChooser(intent, "Selecione um arquivo"), PICK_FILE_REQUEST_CODE_ARQUIVO);
+            intent.setType("application/pdf"); // apenas arquivos PDF
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            startActivityForResult(Intent.createChooser(intent, "Selecione um arquivo PDF"), PICK_FILE_REQUEST_CODE_ARQUIVO);
         });
         btCapaLivro.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("*/*"); // qualquer tipo de arquivo
-            startActivityForResult(Intent.createChooser(intent, "Selecione um arquivo"), PICK_FILE_REQUEST_CODE_CAPA);
+            intent.setType("image/*"); // apenas imagens (JPEG, PNG, WEBP, etc)
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            startActivityForResult(Intent.createChooser(intent, "Selecione uma imagem"), PICK_FILE_REQUEST_CODE_CAPA);
+        });
+        btDescricaoLivro.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("text/plain"); // qualquer tipo de arquivo
+            startActivityForResult(Intent.createChooser(intent, "Selecione um arquivo"), PICK_FILE_REQUEST_CODE_DESCRICAO);
         });
 
         btEnviarLivro.setOnClickListener(v -> {
@@ -140,58 +153,84 @@ public class FormularioFragment extends Fragment {
                 Toast.makeText(getContext(), "Erro na conexão", Toast.LENGTH_SHORT).show();
                 return;
             }
+
             ProjetoLM app = (ProjetoLM) getActivity().getApplicationContext();
             String idPessoaJava = app.getIdPessoaJava();
+
             try {
+                // Verifica se os campos estão preenchidos
+                String titulo = nomeLivroInput.getText().toString().trim();
+                String categoria = generoLivroInput.getText().toString().trim();
+                String autor = autorLivroInput.getText().toString().trim();
+                String nomeCapa = capaLivroInput.getText().toString().trim();
+                String nomeArquivo = arquivoLivroInput.getText().toString().trim();
+                String nomeDescricao = descricaoLivroInput.getText().toString().trim();
 
+                if (titulo.isEmpty() || categoria.isEmpty() || autor.isEmpty()
+                        || nomeCapa.isEmpty() || nomeArquivo.isEmpty() || nomeDescricao.isEmpty()) {
+                    Toast.makeText(getContext(), "Preencha todos os campos e selecione os arquivos.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                String idAutorSql = "select id_assinante from assinante a inner join pessoas p on a.id_pessoa = p.id_pessoa where a.id_pessoa = ?";
+                // Verifica se os arquivos existem
+                File capaFile = new File(requireContext().getFilesDir(), nomeCapa);
+                File arquivoFile = new File(requireContext().getFilesDir(), nomeArquivo);
+                File descricaoFile = new File(requireContext().getFilesDir(), nomeDescricao);
+
+                if (!capaFile.exists() || !arquivoFile.exists() || !descricaoFile.exists()) {
+                    Toast.makeText(getContext(), "Um ou mais arquivos não foram encontrados no armazenamento interno.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Busca o ID do autor
+                String idAutorSql = "SELECT id_autor FROM autor WHERE id_pessoa = ?";
                 PreparedStatement stmtIdAutor = connection.prepareStatement(idAutorSql);
                 stmtIdAutor.setString(1, idPessoaJava);
                 ResultSet rsIdAutor = stmtIdAutor.executeQuery();
 
-
-                int idAssinante = -1;
+                int idAutor = -1;
                 if (rsIdAutor.next()) {
-                    idAssinante = rsIdAutor.getInt("id_assinante");
+                    idAutor = rsIdAutor.getInt("id_autor");
                 } else {
                     Toast.makeText(getContext(), "Autor não encontrado no banco de dados.", Toast.LENGTH_LONG).show();
-                    return; // Não tenta continuar se não encontrou o autor!
+                    stmtIdAutor.close();
+                    return;
                 }
-                String sql = "INSERT INTO livros_enviados (situacao, titulo, categoria, autor, capa_img, livro_file,id_assinante) " +
-                        "VALUES ('Pendente', ?, ?, ?, ?, ?, ?)";
+
+                // Prepara e executa o INSERT
+                String sql = "INSERT INTO livros_enviados (situacao, titulo, categoria, autor, capa_img, livro_file, descricao, id_autor) " +
+                        "VALUES ('Pendente', ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
-                stmt.setString(1, nomeLivroInput.getText().toString());
-                stmt.setString(2, generoLivroInput.getText().toString());
-                stmt.setString(3, autorLivroInput.getText().toString());
+                stmt.setString(1, titulo);
+                stmt.setString(2, categoria);
+                stmt.setString(3, autor);
 
-                File capaFile = new File(requireContext().getFilesDir(), capaLivroInput.getText().toString());
-                File arquivoFile = new File(requireContext().getFilesDir(), arquivoLivroInput.getText().toString());
+                stmt.setBinaryStream(4, new FileInputStream(capaFile), (int) capaFile.length());
+                stmt.setBinaryStream(5, new FileInputStream(arquivoFile), (int) arquivoFile.length());
+                stmt.setBinaryStream(6, new FileInputStream(descricaoFile), (int) descricaoFile.length());
 
-                stmt.setBinaryStream(4, new FileInputStream(capaFile), (int) capaFile.length()); // arquivo
-                stmt.setBinaryStream(5, new FileInputStream(arquivoFile), (int) arquivoFile.length()); // arquivo
-
-                stmt.setInt(6, idAssinante);
-
+                stmt.setInt(7, idAutor);
 
                 int rows = stmt.executeUpdate();
 
                 if (rows > 0) {
                     Toast.makeText(getContext(), "Livro enviado com sucesso!", Toast.LENGTH_SHORT).show();
+                    // Limpa os campos
+                    nomeLivroInput.setText("");
+                    generoLivroInput.setText("");
+                    capaLivroInput.setText("");
+                    arquivoLivroInput.setText("");
+                    autorLivroInput.setText("");
+                    descricaoLivroInput.setText("");
                 } else {
                     Toast.makeText(getContext(), "Erro ao enviar livro.", Toast.LENGTH_SHORT).show();
                 }
 
+                // Fecha conexões
                 stmtIdAutor.close();
                 stmt.close();
                 connection.close();
-
-                nomeLivroInput.setText("");
-                generoLivroInput.setText("");
-                capaLivroInput.setText("");
-                arquivoLivroInput.setText("");
-                autorLivroInput.setText("");
 
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
