@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.projetolm.Cadastro;
 import com.example.projetolm.ConexaoMySQL;
 import com.example.projetolm.ProjetoLM;
 import com.example.projetolm.R;
@@ -64,56 +65,22 @@ AutorFragment extends Fragment {
 
         Connection connection = ConexaoMySQL.conectar();
 
+        String[] listaIds = new String[4];
+        String[] titulos = new String[4];
+        String[] categorias = new String[4];
+        Bitmap[] imagens = new Bitmap[4];
+
+
         try {
-            nomeLivroAutor1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
-                    startActivity(intent);
-                }
-            });
-            nomeLivroAutor2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
-                    startActivity(intent);
-                }
-            });
-            nomeLivroAutor3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
-                    startActivity(intent);
-                }
-            });
-            situacaoLivro1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
-                    startActivity(intent);
-                }
-            });
-            situacaoLivro2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
-                    startActivity(intent);
-                }
-            });
-            situacaoLivro3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
-                    startActivity(intent);
-                }
-            });
             String sql = "SELECT * FROM livros_enviados WHERE id_autor = (SELECT id_autor FROM autor WHERE id_pessoa = ?)";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, idPessoaJava);
             ResultSet rs = stmt.executeQuery();
 
-            int contador = 0;
-            while (rs.next() && contador < 3) {
+
+            int i = 0;
+            while (rs.next() && i < 3) {
+                listaIds[i] = rs.getString("id_livro_enviado");
                 String titulo = rs.getString("titulo");
                 String situacao = rs.getString("situacao");
 
@@ -121,19 +88,19 @@ AutorFragment extends Fragment {
                 byte[] capaBytes = rs.getBytes("capa_img");
                 if (capaBytes == null) continue;
 
-                if (contador == 0) {
+                if (i == 0) {
                     nomeLivroAutor1.setText(titulo);
                     situacaoLivro1.setText(situacao);
                     Glide.with(requireContext())
                             .load(capaBytes)
                             .into(imgArquivo1);
-                } else if (contador == 1) {
+                } else if (i == 1) {
                     nomeLivroAutor2.setText(titulo);
                     situacaoLivro2.setText(situacao);
                     Glide.with(requireContext())
                             .load(capaBytes)
                             .into(imgArquivo2);
-                } else if (contador == 2) {
+                } else if (i == 2) {
                     nomeLivroAutor3.setText(titulo);
                     situacaoLivro3.setText(situacao);
                     Glide.with(requireContext())
@@ -141,7 +108,7 @@ AutorFragment extends Fragment {
                             .into(imgArquivo3);
                 }
 
-                contador++;
+                i++;
             }
 
             rs.close();
@@ -175,6 +142,11 @@ AutorFragment extends Fragment {
                 if (!termoBusca.isEmpty()) {
                     Connection connection = ConexaoMySQL.conectar();
 
+                    String[] listaIds = new String[4];
+                    String[] titulos = new String[4];
+                    String[] categorias = new String[4];
+                    Bitmap[] imagens = new Bitmap[4];
+
                     try {
                         String query = "SELECT * FROM livros_enviados WHERE titulo like ? and id_autor = (SELECT id_autor FROM autor WHERE id_pessoa = ?)";
                         PreparedStatement stmt = connection.prepareStatement(query);
@@ -182,8 +154,9 @@ AutorFragment extends Fragment {
                         stmt.setString(2, idPessoaJava);
                         ResultSet rs = stmt.executeQuery();
 
-                        int contador = 0;
-                        while (rs.next() && contador < 3) {
+                        int i = 0;
+                        while (rs.next() && i < 3) {
+                            listaIds[i] = rs.getString("id_livro_enviado");
                             String titulo = rs.getString("titulo");
                             String situacao = rs.getString("situacao");
 
@@ -191,19 +164,19 @@ AutorFragment extends Fragment {
                             byte[] capaBytes = rs.getBytes("capa_img");
                             if (capaBytes == null) continue;
 
-                            if (contador == 0) {
+                            if (i == 0) {
                                 nomeLivroAutor1.setText(titulo);
                                 situacaoLivro1.setText(situacao);
                                 Glide.with(requireContext())
                                         .load(capaBytes)
                                         .into(imgArquivo1);
-                            } else if (contador == 1) {
+                            } else if (i == 1) {
                                 nomeLivroAutor2.setText(titulo);
                                 situacaoLivro2.setText(situacao);
                                 Glide.with(requireContext())
                                         .load(capaBytes)
                                         .into(imgArquivo2);
-                            } else if (contador == 2) {
+                            } else if (i == 2) {
                                 nomeLivroAutor3.setText(titulo);
                                 situacaoLivro3.setText(situacao);
                                 Glide.with(requireContext())
@@ -211,7 +184,7 @@ AutorFragment extends Fragment {
                                         .into(imgArquivo3);
                             }
 
-                            contador++;
+                            i++;
                         }
 
                         rs.close();
@@ -231,54 +204,59 @@ AutorFragment extends Fragment {
         btRefreshAutor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String[] listaIds = new String[4];
+                String[] titulos = new String[4];
+                String[] categorias = new String[4];
+                Bitmap[] imagens = new Bitmap[4];
+
                 try {
                     String sql = "SELECT * FROM livros_enviados WHERE id_autor = (SELECT id_autor FROM autor WHERE id_pessoa = ?)";
                     PreparedStatement stmt = connection.prepareStatement(sql);
                     stmt.setString(1, idPessoaJava);
                     ResultSet rs = stmt.executeQuery();
 
-                    int contador = 0;
-                    while (rs.next() && contador < 3) {
-                        String titulo = rs.getString("titulo");
-                        String situacao = rs.getString("situacao");
+                    int i = 0;
+                    while (rs.next() && i < 3) {
+                        listaIds[i] = rs.getString("id_livro_enviado");
+                        titulos[i] = rs.getString("titulo");
+                        categorias[i] = rs.getString("categoria");
 
-                        // Obtém a imagem como byte[]
-                        byte[] capaBytes = rs.getBytes("capa_img");
-                        if (capaBytes == null) continue;
 
-                        if (contador == 0) {
-                            nomeLivroAutor1.setText(titulo);
-                            situacaoLivro1.setText(situacao);
-                            Glide.with(requireContext())
-                                    .load(capaBytes)
-                                    .into(imgArquivo1);
-                        } else if (contador == 1) {
-                            nomeLivroAutor2.setText(titulo);
-                            situacaoLivro2.setText(situacao);
-                            Glide.with(requireContext())
-                                    .load(capaBytes)
-                                    .into(imgArquivo2);
-                        } else if (contador == 2) {
-                            nomeLivroAutor3.setText(titulo);
-                            situacaoLivro3.setText(situacao);
-                            Glide.with(requireContext())
-                                    .load(capaBytes)
-                                    .into(imgArquivo3);
+                        // Recupera os bytes da imagem e converte em Bitmap
+                        byte[] imageBytes = rs.getBytes("capa_img");
+                        if (imageBytes != null) {
+                            imagens[i] = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                        } else {
+                            imagens[i] = null; // imagem não encontrada
                         }
 
-                        contador++;
+                        i++;
                     }
+
+
+                    // Exibir na interface
+                    nomeLivroAutor1.setText(titulos[0]);
+                    situacaoLivro1.setText(categorias[0]);
+                    if (imagens[0] != null) imgArquivo1.setImageBitmap(imagens[0]);
+
+                    nomeLivroAutor2.setText(titulos[1]);
+                    situacaoLivro2.setText(categorias[1]);
+                    if (imagens[1] != null) imgArquivo2.setImageBitmap(imagens[1]);
+
+                    nomeLivroAutor3.setText(titulos[2]);
+                    situacaoLivro3.setText(categorias[2]);
+                    if (imagens[2] != null) imgArquivo3.setImageBitmap(imagens[2]);
 
                     rs.close();
                     stmt.close();
 
-
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    Toast.makeText(requireContext(), "Erro ao carregar livros", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
         return view;
     }
 }

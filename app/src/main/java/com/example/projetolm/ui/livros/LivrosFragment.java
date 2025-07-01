@@ -68,9 +68,6 @@ public class LivrosFragment extends Fragment {
         final String[] image3Url = new String[1];
         final String[] image4Url = new String[1];
 
-
-
-
         Connection connection = ConexaoMySQL.conectar();
 
         String[] listaIds = new String[4];
@@ -119,7 +116,6 @@ public class LivrosFragment extends Fragment {
 
             rs.close();
             stmt.close();
-            connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -131,10 +127,10 @@ public class LivrosFragment extends Fragment {
             public void onClick(View v) {
                 Connection connection = ConexaoMySQL.conectar();
 
-                String[] listaIds = new String[4];
-                String[] titulos = new String[4];
-                String[] categorias = new String[4];
-                Bitmap[] imagens = new Bitmap[4]; // armazenar imagens convertidas
+                String[] listaIds1 = new String[4];
+                String[] titulos1 = new String[4];
+                String[] categorias1 = new String[4];
+                Bitmap[] imagens1 = new Bitmap[4]; // armazenar imagens convertidas
 
                 try {
                     String query = "SELECT id_livro, titulo, categoria, capa_img FROM livros ORDER BY RAND() LIMIT 4";
@@ -143,100 +139,111 @@ public class LivrosFragment extends Fragment {
 
                     int i = 0;
                     while (rs.next() && i < 4) {
-                        listaIds[i] = rs.getString("id_livro");
-                        titulos[i] = rs.getString("titulo");
-                        categorias[i] = rs.getString("categoria");
+                        listaIds1[i] = rs.getString("id_livro");
+                        titulos1[i] = rs.getString("titulo");
+                        categorias1[i] = rs.getString("categoria");
 
 
                         // Recupera os bytes da imagem e converte em Bitmap
                         byte[] imageBytes = rs.getBytes("capa_img");
                         if (imageBytes != null) {
-                            imagens[i] = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                            imagens1[i] = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
                         } else {
-                            imagens[i] = null; // imagem não encontrada
+                            imagens1[i] = null; // imagem não encontrada
                         }
 
                         i++;
                     }
 
-                    nomeLivro1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[0]));
-                            startActivity(intent);
-                        }
-                    });
-                    nomeLivro2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[1]));
-                            startActivity(intent);
-                        }
-                    });
-                    nomeLivro3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[2]));
-                            startActivity(intent);
-                        }
-                    });
-                    nomeLivro4.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[3]));
-                            startActivity(intent);
-                        }
-                    });
-
-                    descricaoLivro1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[0]));
-                            startActivity(intent);
-                        }
-                    });
-                    descricaoLivro2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[1]));
-                            startActivity(intent);
-                        }
-                    });
-                    descricaoLivro3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[2]));
-                            startActivity(intent);
-                        }
-                    });
-                    descricaoLivro4.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[3]));
-                            startActivity(intent);
-                        }
-                    });
 
                     // Exibir na interface
-                    nomeLivro1.setText(titulos[0]);
+                    nomeLivro1.setText(titulos1[0]);
                     descricaoLivro1.setText(categorias[0]);
-                    if (imagens[0] != null) imgLivro1.setImageBitmap(imagens[0]);
+                    if (imagens1[0] != null) imgLivro1.setImageBitmap(imagens1[0]);
 
-                    nomeLivro2.setText(titulos[1]);
-                    descricaoLivro2.setText(categorias[1]);
-                    if (imagens[1] != null) imgLivro2.setImageBitmap(imagens[1]);
+                    nomeLivro2.setText(titulos1[1]);
+                    descricaoLivro2.setText(categorias1[1]);
+                    if (imagens1[1] != null) imgLivro2.setImageBitmap(imagens1[1]);
 
-                    nomeLivro3.setText(titulos[2]);
-                    descricaoLivro3.setText(categorias[2]);
-                    if (imagens[2] != null) imgLivro3.setImageBitmap(imagens[2]);
+                    nomeLivro3.setText(titulos1[2]);
+                    descricaoLivro3.setText(categorias1[2]);
+                    if (imagens1[2] != null) imgLivro3.setImageBitmap(imagens1[2]);
 
-                    nomeLivro4.setText(titulos[3]);
-                    descricaoLivro4.setText(categorias[3]);
-                    if (imagens[3] != null) imgLivro4.setImageBitmap(imagens[3]);
+                    nomeLivro4.setText(titulos1[3]);
+                    descricaoLivro4.setText(categorias1[3]);
+                    if (imagens1[3] != null) imgLivro4.setImageBitmap(imagens1[3]);
+
+                    if (listaIds1[0] != null){
+                        nomeLivro1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/"+listaIds1[0]));
+                                startActivity(intent);
+                            }
+                        });
+                        descricaoLivro1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/"+listaIds1[0]));
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                    if (listaIds1[1] != null) {
+
+                        nomeLivro2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/" + listaIds1[1]));
+                                startActivity(intent);
+                            }
+                        });
+                        descricaoLivro2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/"+listaIds1[1]));
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                    if (listaIds1[2] != null) {
+
+                        nomeLivro3.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/" + listaIds1[2]));
+                                startActivity(intent);
+                            }
+                        });
+                        descricaoLivro3.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/"+listaIds1[2]));
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                    if (listaIds1[3] != null) {
+
+                        nomeLivro4.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/" + listaIds1[3]));
+                                startActivity(intent);
+                            }
+                        });
+                        descricaoLivro4.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/"+listaIds1[3]));
+                                startActivity(intent);
+                            }
+                        });
+                    }
+
 
                     rs.close();
                     stmt.close();
-                    connection.close();
 
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -245,65 +252,6 @@ public class LivrosFragment extends Fragment {
             }
         });
 
-
-
-        nomeLivro1.setOnClickListener(new View.OnClickListener() {
-        @Override
-            public void onClick(View view) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[0]));
-            startActivity(intent);
-            }
-        });
-        nomeLivro2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[1]));
-                startActivity(intent);
-            }
-        });
-        nomeLivro3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[2]));
-                startActivity(intent);
-                }
-            });
-        nomeLivro4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[3]));
-               startActivity(intent);
-            }
-        });
-
-        descricaoLivro1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[0]));
-                startActivity(intent);
-            }
-        });
-        descricaoLivro2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[1]));
-                startActivity(intent);
-            }
-        });
-        descricaoLivro3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[2]));
-                startActivity(intent);
-            }
-        });
-        descricaoLivro4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+listaIds[3]));
-                startActivity(intent);
-            }
-        });
 
         btPesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -331,6 +279,12 @@ public class LivrosFragment extends Fragment {
                 if (!termoBusca.isEmpty()) {
                     Connection connection = ConexaoMySQL.conectar();
 
+                    String[] listaIds2 = new String[4];
+                    String[] titulos2 = new String[4];
+                    String[] categorias2 = new String[4];
+                    Bitmap[] imagens2 = new Bitmap[4]; // armazenar imagens convertidas
+
+
                     try {
                         String query = "SELECT * FROM livros WHERE titulo LIKE ? ORDER BY RAND() LIMIT 4";
                         PreparedStatement stmt = connection.prepareStatement(query);
@@ -339,45 +293,44 @@ public class LivrosFragment extends Fragment {
 
                         int i = 0;
                         while (rs.next() && i < 4) {
-                            String titulo = rs.getString("titulo");
-                            String categoria = rs.getString("categoria");
+                            listaIds2[i] = rs.getString("id_livro");
+                            titulos2[i] = rs.getString("titulo");
+                            categorias2[i] = rs.getString("categoria");
+
                             byte[] imageBytes = rs.getBytes("capa_img");
-
-                            Bitmap imagemBitmap = null;
                             if (imageBytes != null) {
-                                imagemBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                            }
-
-                            // Exibir nos campos corretos
-                            switch (i) {
-                                case 0:
-                                    nomeLivro1.setText(titulo);
-                                    descricaoLivro1.setText(categoria);
-                                    if (imagemBitmap != null) imgLivro1.setImageBitmap(imagemBitmap);
-                                    break;
-                                case 1:
-                                    nomeLivro2.setText(titulo);
-                                    descricaoLivro2.setText(categoria);
-                                    if (imagemBitmap != null) imgLivro2.setImageBitmap(imagemBitmap);
-                                    break;
-                                case 2:
-                                    nomeLivro3.setText(titulo);
-                                    descricaoLivro3.setText(categoria);
-                                    if (imagemBitmap != null) imgLivro3.setImageBitmap(imagemBitmap);
-                                    break;
-                                case 3:
-                                    nomeLivro4.setText(titulo);
-                                    descricaoLivro4.setText(categoria);
-                                    if (imagemBitmap != null) imgLivro4.setImageBitmap(imagemBitmap);
-                                    break;
+                                imagens2[i] = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                            } else {
+                                imagens2[i] = null;
                             }
 
                             i++;
                         }
 
+// Exibir nos campos corretos depois do while
+                        if (i > 0) {
+                            nomeLivro1.setText(titulos2[0]);
+                            descricaoLivro1.setText(categorias2[0]);
+                            if (imagens2[0] != null) imgLivro1.setImageBitmap(imagens2[0]);
+                        }
+                        if (i > 1) {
+                            nomeLivro2.setText(titulos2[1]);
+                            descricaoLivro2.setText(categorias2[1]);
+                            if (imagens2[1] != null) imgLivro2.setImageBitmap(imagens2[1]);
+                        }
+                        if (i > 2) {
+                            nomeLivro3.setText(titulos2[2]);
+                            descricaoLivro3.setText(categorias2[2]);
+                            if (imagens2[2] != null) imgLivro3.setImageBitmap(imagens2[2]);
+                        }
+                        if (i > 3) {
+                            nomeLivro4.setText(titulos2[3]);
+                            descricaoLivro4.setText(categorias2[3]);
+                            if (imagens2[3] != null) imgLivro4.setImageBitmap(imagens2[3]);
+                        }
+
                         rs.close();
                         stmt.close();
-                        connection.close();
 
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -388,6 +341,74 @@ public class LivrosFragment extends Fragment {
                 }
             }
         });
+        if (listaIds[0] != null){
+            nomeLivro1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/"+listaIds[0]));
+                    startActivity(intent);
+                }
+            });
+            descricaoLivro1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/"+listaIds[0]));
+                    startActivity(intent);
+                }
+            });
+        }
+        if (listaIds[1] != null) {
+
+            nomeLivro2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/" + listaIds[1]));
+                    startActivity(intent);
+                }
+            });
+            descricaoLivro2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/"+listaIds[1]));
+                    startActivity(intent);
+                }
+            });
+        }
+        if (listaIds[2] != null) {
+
+            nomeLivro3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/" + listaIds[2]));
+                    startActivity(intent);
+                }
+            });
+            descricaoLivro3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/"+listaIds[2]));
+                    startActivity(intent);
+                }
+            });
+        }
+        if (listaIds[3] != null) {
+
+            nomeLivro4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/" + listaIds[3]));
+                    startActivity(intent);
+                }
+            });
+            descricaoLivro4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/"+listaIds[3]));
+                    startActivity(intent);
+                }
+            });
+        }
+
         return view;
     }
     public void onDestroyView() {

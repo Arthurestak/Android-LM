@@ -84,7 +84,7 @@ public class Login extends AppCompatActivity{
 btRecuperarSenhaLogin.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://link.com"));
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://localhost:3000/login/esqueci/index"));
         startActivity(intent);
     }
 });
