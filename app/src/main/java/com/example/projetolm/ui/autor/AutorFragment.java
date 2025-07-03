@@ -207,7 +207,7 @@ AutorFragment extends Fragment {
 
                 String[] listaIds = new String[4];
                 String[] titulos = new String[4];
-                String[] categorias = new String[4];
+                String[] situacao = new String[4];
                 Bitmap[] imagens = new Bitmap[4];
 
                 try {
@@ -220,7 +220,7 @@ AutorFragment extends Fragment {
                     while (rs.next() && i < 3) {
                         listaIds[i] = rs.getString("id_livro_enviado");
                         titulos[i] = rs.getString("titulo");
-                        categorias[i] = rs.getString("categoria");
+                        situacao[i] = rs.getString("situacao");
 
 
                         // Recupera os bytes da imagem e converte em Bitmap
@@ -237,15 +237,15 @@ AutorFragment extends Fragment {
 
                     // Exibir na interface
                     nomeLivroAutor1.setText(titulos[0]);
-                    situacaoLivro1.setText(categorias[0]);
+                    situacaoLivro1.setText(situacao[0]);
                     if (imagens[0] != null) imgArquivo1.setImageBitmap(imagens[0]);
 
                     nomeLivroAutor2.setText(titulos[1]);
-                    situacaoLivro2.setText(categorias[1]);
+                    situacaoLivro2.setText(situacao[1]);
                     if (imagens[1] != null) imgArquivo2.setImageBitmap(imagens[1]);
 
                     nomeLivroAutor3.setText(titulos[2]);
-                    situacaoLivro3.setText(categorias[2]);
+                    situacaoLivro3.setText(situacao[2]);
                     if (imagens[2] != null) imgArquivo3.setImageBitmap(imagens[2]);
 
                     rs.close();
